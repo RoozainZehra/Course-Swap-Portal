@@ -1,6 +1,4 @@
 # Course-Swap-Portal
-# Course-Swap-Portal
-
 ##  Git Flow Strategy
 
 ### **Main Branches**
