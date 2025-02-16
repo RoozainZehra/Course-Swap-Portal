@@ -1,4 +1,28 @@
 # Course-Swap-Portal
+# Course-Swap-Portal
+
+##  Git Flow Strategy
+
+### **Main Branches**
+- **`main`**: Stable production-ready branch.
+- **`develop`**: Integration branch where new features are merged.
+
+### **Supporting Branches**
+#### **Feature Branches (`feature/*`)**
+Used for developing new functionalities:
+- `feature/login`
+- `feature/submit_request`
+- `feature/search_request`
+- `feature/delete_request`
+- `feature/select_course`
+
+#### **Release Branches (`release/*`)**
+- Created for final testing before merging into `main`.
+- Example: `release/v1.0`
+
+#### **Hotfix Branches (`hotfix/*`)**
+- Used for urgent fixes on `main` without affecting ongoing development.
+- Example: `hotfix/urgent_fix`
 
 ```mermaid
 graph TD;
