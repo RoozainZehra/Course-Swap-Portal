@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HABIB UNIVERSITY COURSE SWAP PORTAL</title>
+  <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+<!-- Screens Container -->
+<div class="screens-container">
+  
+  <!-- Signup Screen -->
+  <div class="screen" id="signup-screen" style="display: block;">
+    <div class="container">
+      <div class="logo">
+        <img src="/logo.png" alt="Habib University Logo">
+      </div>
+      <div class="heading">HABIB UNIVERSITY COURSE SWAP PORTAL</div>
+      
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Value">
+          <div id="fullNameError" class="error">Please enter your full name</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Value">
+          <div id="emailError" class="error">Please enter a valid email address</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Value">
+          <div id="passwordError" class="error">Password must be at least 8 characters</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" placeholder="Value">
+          <div id="confirmPasswordError" class="error">Passwords do not match</div>
+        </div>
+        <input type="submit" style="display: none;">
+      </form>
+      
+      <a href="#" id="goToSignin" class="link">Sign in</a>
+    </div>
+  </div>
+  
+  <!-- Course Swap Dashboard Screen -->
+  <div id="course-swap-screen" class="screen">
+  <header class="header">
+    <div class="platform-title">HABIB UNIVERSITY COURSE SWAP PORTAL</div>
+    <button class="profile-btn">My Profile</button>
+  </header>
+  
+ <div class="search-add-container">
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search swap requests...">
+    <button id="searchBtn">🔍</button>
+  </div>
+
+  <button class="add-request-btn">
+    <span>+</span>
+    <span>Add Request</span>
+  </button>
+</div>
+    
+    <div class="swap-requests-container">
+      <!-- Swap request cards will be dynamically added here -->
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+  <!-- Profile Screen -->
+  <div class="screen" id="profile-screen">
+    <div class="profile-page">
+      <header class="header">
+        <button class="home-btn" id="profileHomeBtn">🏠</button>
+        <button class="requests-btn" id="goToMyRequests">See your requests</button>
+      </header>
+      
+      <main class="profile-content">
+        <div class="profile-card">
+          <div class="profile-image">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Image">
+          </div>
+          
+          <div class="profile-details">
+            <div class="detail-item">
+              <h3>Name</h3>
+              <p>Ali Ahmed</p>
+            </div>
+            
+            <div class="detail-item">
+              <h3>Email</h3>
+              <p>aaa12345@st.habib.edu.pk</p>
+            </div>
+            
+            <div class="detail-item">
+              <h3>Phone Number</h3>
+              <p>0321-2345678</p>
+            </div>
+            
+            <div class="detail-item">
+              <h3>Your requests</h3>
+              <p>0</p>
+            </div>
+          </div>
+        </div>
+      </main>
+      
+      <footer class="footer">
+        <button class="action-btn edit-btn">✏️ Edit Profile</button>
+        <button class="action-btn settings-btn" id="goToSignup">🚪 Logout</button>
+      </footer>
+    </div>
+  </div>
+
+ <!-- My Requests Screen -->
+<div class="screen" id="my-requests-screen">
+  <header class="header">
+    <button class="home-btn" id="myRequestsHomeBtn">🏠</button>
+    <div class="platform-title">My Requests</div>
+    <button class="profile-btn" id="goToProfileFromRequests">Profile</button>
+  </header>
+  
+  <div class="main-content">
+    <h1 class="section-title">Your Active Requests</h1>
+    
+    <div class="my-requests-container">
+      <!-- This is where the user's requests will be displayed -->
+      <!-- Empty state will show initially -->
+      <div class="empty-state" id="my-requests-empty-state">
+        <div class="empty-state-icon">📋</div>
+        <div class="empty-state-text">You haven't made any swap requests yet</div>
+        <div>Create a swap request from the main dashboard</div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Course Schedule Screen -->
+  <div class="screen" id="course-schedule-screen">
+    <div class="course-form-container">
+      <button class="home-btn" id="courseHomeBtn">🏠</button>
+      
+      <div class="form-content">
+        <div class="course-section">
+          <div class="form-group">
+            <label>Name</label>
+            <div class="input-container">
+              <input type="text" placeholder="Course name">
+              <button class="clear-btn">✕</button>
+            </div>
+            <small>Please write the full course name</small>
+          </div>
+          
+          <div class="form-group">
+            <div class="days-selection">
+              <div class="day-btn">Mon</div>
+              <div class="day-btn">Tue</div>
+              <div class="day-btn">Wed</div>
+              <div class="day-btn">Thur</div>
+              <div class="day-btn">Fri</div>
+            </div>
+            <small>Please choose the days you have this class</small>
+          </div>
+          
+          <div class="form-group">
+            <div class="time-input">
+              <input type="text" placeholder="Time">
+              <button class="clock-btn">⏱️</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="course-section">
+          <div class="form-group">
+            <label>Want</label>
+            <div class="input-container">
+              <input type="text" placeholder="Course name">
+              <button class="clear-btn">✕</button>
+            </div>
+            <small>Please write the full course name</small>
+          </div>
+          
+          <div class="form-group">
+            <div class="days-selection">
+              <div class="day-btn">Mon</div>
+              <div class="day-btn">Tue</div>
+              <div class="day-btn">Wed</div>
+              <div class="day-btn">Thur</div>
+              <div class="day-btn">Fri</div>
+            </div>
+            <small>Please choose the days you have this class</small>
+          </div>
+          
+          <div class="form-group">
+            <div class="time-input">
+              <input type="text" placeholder="Time">
+              <button class="clear-btn">✕</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button class="post-btn" id="goToSwapDashboard">Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Link the script before closing body -->
+ <script src="script.js"></script>
+
+</body>
+</html>
