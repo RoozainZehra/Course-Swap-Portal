@@ -1,0 +1,118 @@
+/* Course Swap Dashboard Screen Styles */
+* {
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+
+.platform-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+}
+
+.profile-btn {
+  background-color: white;
+  color: #8a2be2;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stack content vertically */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 24px;
+  color: #8a2be2;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.search-add-container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center; /* Center elements horizontally */
+  align-items: center; /* Align elements vertically */
+  gap: 20px; /* Adds spacing between elements */
+  margin: 0 0 10px; /* Reduce top margin to move it upwards */
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adds spacing between the search bar and button */
+}
+
+#searchInput {
+  width: 300px;
+  height: 40px; /* Set a consistent height */
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #6200ea;
+  border-radius: 5px;
+  outline: none;
+}
+
+#searchInput:focus {
+  border-color: #3700b3;
+}
+
+#searchBtn {
+  height: 40px; /* Match the height of #searchInput */
+  width: 45px;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  padding: 0 12px; /* Adjust padding for consistent alignment */
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#searchBtn:hover {
+  background-color: #3700b3;
+}
+
+.add-request-btn {
+  align-self: center; /* Ensure it aligns with the center of the container */
+  background-color: #7c2ae8;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  width: auto; /* Ensure it doesn't stretch unnecessarily */
+}
+
+.add-request-btn:hover {
+  background-color: #5a1cbf;
+}
+
+.swap-requests-container { /* ask maaaz */
+  display: flex;
+  justify-content: flex-start; /* Align content to the top */
+  align-items: flex-start;
+  flex-direction: column; /* Stack requests vertically */
+  width: 100%; /* Ensure it spans the full width */
+  padding: 20px; /* Add padding for spacing */
+}
+
+@media (max-width: 768px) {
+  .swap-requests-container {
+    margin-top: 0px; /* Further reduce margin for smaller screens */
+    padding: 0 10px; /* Reduce padding for smaller devices */
+  }
+}

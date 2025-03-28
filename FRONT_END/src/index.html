@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HABIB UNIVERSITY COURSE SWAP PORTAL</title>
-  <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="style.css"> 
+  <!-- <link rel="stylesheet" href="signIn.css" id="signinStylesheet" disabled> Link to your sign-in CSS file -->
 </head>
 <body>
 
@@ -53,21 +54,44 @@
   <!-- Course Swap Dashboard Screen -->
   <div id="course-swap-screen" class="screen">
   <header class="header">
-    <div class="platform-title">HABIB UNIVERSITY COURSE SWAP PORTAL</div>
-    <button class="profile-btn">My Profile</button>
+    <div class="logo">
+      <img src="logo.png" alt="Habib University Logo" style="width: 200px; height: 125px;">
+    </div>
+    <div class="platform-title">Habib University Course Swap Portal</div>
+    <button class="profile-btn">Profile</button>
   </header>
   
- <div class="search-add-container">
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search swap requests...">
-    <button id="searchBtn">🔍</button>
-  </div>
+  <!-- <div class="search-add-container" style="justify-content: center; align-content: space-between;">
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search swap requests...">
+      <button id="searchBtn">🔍</button>
+    </div>
 
-  <button class="add-request-btn">
-    <span>+</span>
-    <span>Add Request</span>
-  </button>
-</div>
+    <button class="add-request-btn">
+      <span>+</span>
+      <span>Add Request</span>
+    </button>
+  </div> -->
+
+  <div class="search-add-container spaced">
+    <div class="search-container">
+      <div class="input-container" style="position: relative; width: 100%;">
+        <select style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; appearance: none;">
+          <option value="">Select a course</option>
+          <option value="cs101">CS101 - Intro to Programming</option>
+          <option value="math201">MATH201 - Calculus II</option>
+          <option value="phy301">PHY301 - Mechanics</option>
+          <option value="bus102">BUS102 - Business Basics</option>
+        </select>
+        <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none;">▼</span>
+      </div>          
+      <button id="searchBtn" style="margin:10px">🔍</button>
+    </div>
+    <button class="add-request-btn">
+      <span>+</span>
+      <span>Add Request</span>
+    </button>
+  </div>
     
     <div class="swap-requests-container">
       <!-- Swap request cards will be dynamically added here -->
@@ -145,7 +169,7 @@
   </div>
 </div>
   <!-- Course Schedule Screen -->
-  <div class="screen" id="course-schedule-screen">
+  <!-- <div class="screen" id="course-schedule-screen">
     <div class="course-form-container">
       <button class="home-btn" id="courseHomeBtn">🏠</button>
       
@@ -206,7 +230,83 @@
               <button class="clear-btn">✕</button>
             </div>
           </div>
+        </div> -->
+
+        <!-- Course Schedule Screen -->
+<div class="screen" id="course-schedule-screen">
+  <div class="course-form-container" style="display: block;">
+    <button class="home-btn" id="courseHomeBtn">🏠</button>
+    
+    <div class="form-content">
+      <div class="course-section">
+        <div class="form-group">
+          <label>Have</label>
+          <div class="input-container" style="position: relative; width: 100%;">
+            <select style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; appearance: none;">
+              <option value="">Select a course</option>
+              <option value="cs101">MATH101 - Calculus I</option>
+              <option value="math201">PHIL/CS 223/223 - Ethics of Artificial Intelligence</option>
+              <option value="phy301">EE/CS 371/330 - Computer Architechure</option>
+              <option value="bus102">CS/CE 412/471 - Algorithms: Design and Analysis</option>
+            </select>
+            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none;">▼</span>
+          </div>          
         </div>
+      
+        <div class="form-group" style="margin-top: 10px;">
+          <label>Section</label>
+          <div class="input-container" style="position: relative; width: 100%;">
+            <select style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; appearance: none;">
+              <option value="">Select a section</option>
+              <option value="A">L1</option>
+              <option value="B">L2</option>
+              <option value="C">L3</option>
+              <option value="D">L4</option>
+            </select>
+            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none;">▼</span>
+          </div>          
+        </div>
+      </div>
+      
+      
+      <div class="course-section">
+        <div class="form-group">
+          <label>Want</label>
+          <div class="input-container" style="position: relative; width: 100%;">
+            <select style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; appearance: none;">
+              <option value="">Select a course</option>
+              <option value="cs101">MATH101 - Calculus I</option>
+              <option value="math201">PHIL/CS 223/223 - Ethics of Artificial Intelligence</option>
+              <option value="phy301">EE/CS 371/330 - Computer Architechure</option>
+              <option value="bus102">CS/CE 412/471 - Algorithms: Design and Analysis</option>
+            </select>
+            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none;">▼</span>
+          </div>          
+          <!-- <small style="display: block; text-align: right; margin-top: 5px; color: #666;">Please select the course code</small> -->
+        </div>  
+        <div class="form-group" style="margin-top: 10px;">
+          <label>Section</label>
+          <div class="input-container" style="position: relative; width: 100%;">
+            <select style="width: 100%; padding: 8px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; appearance: none;">
+              <option value="">Select a section</option>
+              <option value="A">L1</option>
+              <option value="B">L2</option>
+              <option value="C">L3</option>
+              <option value="D">L4</option>
+            </select>
+            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none;">▼</span>
+          </div>          
+        </div>   
+      </div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button style="padding: 10px 20px; font-size: 18px; border-radius: 5px; border: none; background-color: #007bff; color: white; cursor: pointer;">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
         
         <div class="form-actions">
           <button class="post-btn" id="goToSwapDashboard">Post</button>
@@ -218,6 +318,19 @@
 
  <!-- Link the script before closing body -->
  <script src="script.js"></script>
+ <script>
+   // JavaScript to enable the sign-in stylesheet when the sign-in page is displayed
+   document.addEventListener('DOMContentLoaded', function() {
+     const signinStylesheet = document.getElementById('signinStylesheet');
+     const signupScreen = document.getElementById('signup-screen');
+     
+     if (signupScreen.style.display === 'block') {
+       signinStylesheet.disabled = false;
+     } else {
+       signinStylesheet.disabled = true;
+     }
+   });
+ </script>
 
 </body>
 </html>
