@@ -10,7 +10,7 @@ const SearchBar = ({ placeholder = "Search courses, requests..." }) => {
           className="search-input"
           placeholder={placeholder}
         />
-        <button className="add-request-btn">Search</button>
+        <button className="search-request-btn">Search</button>
       </div>
     </div>
   );

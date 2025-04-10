@@ -114,7 +114,7 @@ body {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
 }
 
-.add-request-btn {
+.search-request-btn {
   padding: 0.75rem 1.5rem;
   border-radius: 30px;
   border: none;
@@ -126,9 +126,31 @@ body {
   /* white-space: nowrap; */
 }
 
-.add-request-btn:hover {
+.search-request-btn:hover {
   background:#09866b;
 }
+
+.fab-add-request {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #09866b;
+  color: white;
+  font-size: 32px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.fab-add-request:hover {
+  background-color: #066d55;
+}
+
 
 .welcome-bar {
   background: linear-gradient(135deg, #6e45e2 0%, #88619a 100%);
