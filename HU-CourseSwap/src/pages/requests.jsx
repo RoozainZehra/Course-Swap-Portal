@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../components/Header';  // Assuming you have a Header component
 import EmptyState from '../components/EmptyState';  // New EmptyState component
 import '../styles/requests.css';  // Importing the requests-specific CSS file
 

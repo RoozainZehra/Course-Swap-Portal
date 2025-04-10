@@ -7,6 +7,7 @@ import RequestsPage from './pages/requests.jsx';
 import AddRequest from './pages/addRequests.jsx';  // Import AddRequest page
 
 import './App.css';  // Assuming you have global styles
+// import './styles/dashboard.css'; // or wherever your CSS is
 
 const App = () => {
   return (

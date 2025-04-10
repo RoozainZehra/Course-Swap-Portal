@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+// import './Search.css'; // make sure to create this file for styles
 
-const SearchBar = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = () => {
-    onSearch(searchTerm);
-  };
-
+const SearchBar = ({ placeholder = "Search courses, requests..." }) => {
   return (
-    <div className="search-container">
-      <input
-        type="text"
-        placeholder="Search swap requests..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button onClick={handleSearch}>🔍</button>
+    <div className="search-bar-wrapper">
+      <div className="search-row">
+        <input
+          type="text"
+          className="search-input"
+          placeholder={placeholder}
+        />
+        <button className="add-request-btn">Search</button>
+      </div>
     </div>
   );
 };
