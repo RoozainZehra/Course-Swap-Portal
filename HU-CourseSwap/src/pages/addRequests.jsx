@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';  // Import Link
-import '../styles/addRequests.css'; // Make sure to import your stylesheets
+import { Link } from 'react-router-dom';
+import '../styles/addRequests.css';
 
 const AddRequest = () => {
   const [haveCourse, setHaveCourse] = useState('');
@@ -9,20 +9,21 @@ const AddRequest = () => {
   const [wantSection, setWantSection] = useState('');
 
   const handleSubmit = () => {
-    // Logic to handle the form submission
     console.log('Form Submitted', { haveCourse, haveSection, wantCourse, wantSection });
   };
 
   return (
     <div className="screen" id="course-schedule-screen">
       <div className="course-form-container">
-        {/* Home Button (Link to Dashboard or Home Page) */}
-        <Link to="/dashboard">
-          <button className="home-btn" id="courseHomeBtn">🏠</button>
-        </Link>
+        {/* Back Button aligned top-right */}
+        <div className="back-btn-container">
+          <Link to="/dashboard">
+            <button className="back-btn">Back</button>
+          </Link>
+        </div>
 
         <div className="form-content">
-          {/* Course Section */}
+          {/* Have Section */}
           <div className="course-section">
             <div className="form-group">
               <label>Have</label>
@@ -30,7 +31,7 @@ const AddRequest = () => {
                 <select
                   value={haveCourse}
                   onChange={(e) => setHaveCourse(e.target.value)}
-                  style={{ width: '100%', padding: '8px', fontSize: '16px', borderRadius: '5px', border: '1px solid #ccc' }}
+                  className="form-select"
                 >
                   <option value="">Select a course</option>
                   <option value="cs101">MATH101 - Calculus I</option>
@@ -38,17 +39,17 @@ const AddRequest = () => {
                   <option value="phy301">EE/CS 371/330 - Computer Architecture</option>
                   <option value="bus102">CS/CE 412/471 - Algorithms: Design and Analysis</option>
                 </select>
-                <span style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>▼</span>
+                <span className="select-arrow">▼</span>
               </div>
             </div>
 
-            <div className="form-group" style={{ marginTop: '10px' }}>
+            <div className="form-group">
               <label>Section</label>
               <div className="input-container">
                 <select
                   value={haveSection}
                   onChange={(e) => setHaveSection(e.target.value)}
-                  style={{ width: '100%', padding: '8px', fontSize: '16px', borderRadius: '5px', border: '1px solid #ccc' }}
+                  className="form-select"
                 >
                   <option value="">Select a section</option>
                   <option value="A">L1</option>
@@ -56,7 +57,7 @@ const AddRequest = () => {
                   <option value="C">L3</option>
                   <option value="D">L4</option>
                 </select>
-                <span style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>▼</span>
+                <span className="select-arrow">▼</span>
               </div>
             </div>
           </div>
@@ -69,7 +70,7 @@ const AddRequest = () => {
                 <select
                   value={wantCourse}
                   onChange={(e) => setWantCourse(e.target.value)}
-                  style={{ width: '100%', padding: '8px', fontSize: '16px', borderRadius: '5px', border: '1px solid #ccc' }}
+                  className="form-select"
                 >
                   <option value="">Select a course</option>
                   <option value="cs101">MATH101 - Calculus I</option>
@@ -77,17 +78,17 @@ const AddRequest = () => {
                   <option value="phy301">EE/CS 371/330 - Computer Architecture</option>
                   <option value="bus102">CS/CE 412/471 - Algorithms: Design and Analysis</option>
                 </select>
-                <span style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>▼</span>
+                <span className="select-arrow">▼</span>
               </div>
             </div>
 
-            <div className="form-group" style={{ marginTop: '10px' }}>
+            <div className="form-group">
               <label>Section</label>
               <div className="input-container">
                 <select
                   value={wantSection}
                   onChange={(e) => setWantSection(e.target.value)}
-                  style={{ width: '100%', padding: '8px', fontSize: '16px', borderRadius: '5px', border: '1px solid #ccc' }}
+                  className="form-select"
                 >
                   <option value="">Select a section</option>
                   <option value="A">L1</option>
@@ -95,17 +96,14 @@ const AddRequest = () => {
                   <option value="C">L3</option>
                   <option value="D">L4</option>
                 </select>
-                <span style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>▼</span>
+                <span className="select-arrow">▼</span>
               </div>
             </div>
           </div>
 
           {/* Submit Button */}
-          <div style={{ textAlign: 'center', marginTop: '20px' }}>
-            <button
-              style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '5px', border: 'none', backgroundColor: '#007bff', color: 'white', cursor: 'pointer' }}
-              onClick={handleSubmit}
-            >
+          <div className="submit-container">
+            <button className="submit-btn" onClick={handleSubmit}>
               Submit
             </button>
           </div>

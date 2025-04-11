@@ -7,6 +7,7 @@ import RequestsPage from './pages/requests.jsx';
 import AddRequest from './pages/addRequests.jsx';  // Import AddRequest page
 
 import './App.css';  // Assuming you have global styles
+// import './styles/dashboard.css'; // or wherever your CSS is
 
 const App = () => {
   return (
@@ -15,7 +16,7 @@ const App = () => {
         <Route path="/" element={<SignInPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/requests" element={<RequestsPage />} />
+        <Route path="/my-requests" element={<RequestsPage />} />
         <Route path="/add-request" element={<AddRequest />} />
       </Routes>
     </Router>

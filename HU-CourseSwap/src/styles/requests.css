@@ -1,217 +1,93 @@
-/* #my-requests-screen .main-content {
-  padding: 20px;
-  background-color: #f0f2f5;
-  min-height: calc(100vh - 120px);
-} */
+.requests-layout {
+  display: flex;
+  min-height: 100vh;
+  /* background-color: #e8d6fb; matches the dashboard's bg */
+}
 
-.main-content {
+.requests-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.requests-content {
+  flex: 1;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: calc(
-    100vh - 100px
-  ); /* Adjust height to fit the header (assumed 100px height) */
-  width: 100%; /* Ensure it spans the full width */
 }
 
 .section-title {
-  font-size: 36px;
-  color: #8a2be2; /* Purple color for the title */
-  margin-bottom: 20px;
+  margin-top: 2rem;
+  text-align: center;
+  /* margin-left: 1rem; */
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #4a148c;
   font-weight: bold;
 }
 
-.my-requests-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px;
-  margin-top: 100px; /* Add spacing from the header */
-  margin-left: 20px; /* Add spacing from the left edge */
-  width: calc(100% - 40px); /* Ensure it spans the width minus margins */
-  align-self: flex-start; /* Align the container to the top left */
-  height: 50px;
-  width: 40px;
-}
-
-/* User's swap cards will be slightly different */
-.my-requests-container .swap-card {
-  border-left: 4px solid #50e240; /* Green border to indicate user's own requests */
-  position: relative;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-/* Delete button for user's own requests */
-.delete-request-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 14px;
+.empty-state-wrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: opacity 0.2s;
+  align-items: center;
+  flex: 1;
 }
 
-.delete-request-btn:hover {
-  opacity: 1;
+/* Swap Cards */
+.swap-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* max-width: 750; */
+  gap: 1rem;
+  justify-content: flex-start;
 }
 
-/* Status indicator */
-.request-status {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #ffaa00;
-  color: white;
+.swap-card {
+  justify-content: space-between; /* allows space for content + button */
+  background: #f3e8ff;
+  padding: 1.2rem;
   border-radius: 12px;
-  padding: 3px 8px;
-  font-size: 10px;
-  font-weight: bold;
-}
-
-/* Animation for when a card is deleted */
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-}
-
-.deleting {
-  animation: fadeOut 0.3s forwards;
-}
-
-.swap-requests-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh; /* Adjust based on your layout */
-}
-
-.empty-state {
+  width: 250px;
+  height: 200px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, border 0.2s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   text-align: center;
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin: auto;
 }
 
-.empty-state-text {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+.swap-card:hover {
+  transform: translateY(-5px);
 }
 
-.empty-state div {
-  font-size: 14px;
-  color: #666;
+.swap-card h4 {
+  margin-bottom: 0.5rem;
+  color: #4b0082;
 }
 
-/* Swap Card Styles */
-.swap-card {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  border-left: 4px solid #8a2be2;
+.swap-card p {
+  color: #444;
 }
 
-.swap-card-header {
-  padding: 15px;
-  background-color: #f6f3ff;
-  border-bottom: 1px solid #eee;
-}
-
-.course-code {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.course-name {
-  font-size: 14px;
-  color: #666;
-}
-
-.swap-card-body {
-  padding: 15px;
-}
-
-.info-group {
-  margin-bottom: 12px;
-}
-
-.info-label {
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 4px;
-}
-
-.info-value {
-  font-size: 15px;
-  color: #333;
-  font-weight: 500;
-}
-
-.schedule-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 5px;
-}
-
-.day-tag {
-  background-color: #f0f0ff;
-  color: #8a2be2;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.swap-card-footer {
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #eee;
-}
-
-.posted-by {
-  font-size: 13px;
-  color: #888;
-}
-
-.contact-btn {
-  background-color: #8a2be2;
-  color: white;
-  border: none;
-  border-radius: 5px;
+.swap-card-btn1{
+  margin-top: 1rem;
+  align-self: center;
   padding: 8px 16px;
-  font-size: 14px;
+  border: none;
+  border-radius: 20px;
+  background-color: #5837b4;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.contact-btn:hover {
-  background-color: #7721c9;
+.swap-card-btn1:hover {
+  background-color: #fa0a0a;
 }
+

@@ -1,118 +1,294 @@
-/* Course Swap Dashboard Screen Styles */
+/* Global reset and base styles */
 * {
-  justify-content: center;
   margin: 0;
   padding: 0;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.platform-title {
-  font-size: 22px;
-  font-weight: bold;
+body {
+  background: #f7e8f2;
+  color: #333;
+}
+
+/* Layout wrapper */
+.dashboard-wrapper {
+  display: flex;
+  /* min-height: 100vh; */
+}
+
+/* Sidebar styles */
+.sidebar {
+  background: linear-gradient(135deg, #6e45e2 0%, #88619a 100%);
   color: white;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.2rem;
+  position: fixed;
+  top: 2rem;
+  left: 4rem;
+  bottom: 2rem;
+  border-radius: 20px;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 100;
 }
 
-.profile-btn {
-  background-color: white;
-  color: #8a2be2;
+/* Logo */
+.logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.sidebar-logo {
+  width: 180px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+
+/* Sidebar menu */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  transition: background 0.3s;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.sidebar li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Content area (right of sidebar) */
+.dashboard-content {
+  margin-left: 280px;  /* slight reduction for better alignment */
+  padding: 2rem 2rem;
+  flex: 1;
+}
+
+/* Search bar + welcome layout */
+.search-welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  max-width: 750px; /* constrain width */
+  width: 100%;
+}
+
+.search-bar-wrapper {
+  flex: 1;
+  min-width: 250px;
+  max-width: 775px;
+  margin-bottom: 1rem;
+}
+
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* space between input and button */
+}
+
+.search-input {
+  flex: 1; /* take up available space */
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  outline: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-request-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  border: none;
+  background: #5837b4;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  /* white-space: nowrap; */
+}
+
+.search-request-btn:hover {
+  background:#09866b;
+}
+
+.fab-add-request {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #09866b;
+  color: white;
+  font-size: 32px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.fab-add-request:hover {
+  background-color: #066d55;
+}
+
+
+.welcome-bar {
+  background: linear-gradient(135deg, #6e45e2 0%, #88619a 100%);
+  border-radius: 20px;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 775px; /* same as search bar container */
+  height: 150px;
+  width: 100%;
+  /* position: fixed; */
+  /* margin-top: rem !important;  */
+  margin-bottom: 2rem;
+}
+
+.welcome-text .date {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+  align-content: center;
+}
+
+.welcome-text h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.welcome-text .subtitle {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  opacity: 0.85;
+
+}
+
+/* Swap Cards */
+.swap-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center; /* This will now work */
+  padding: 1rem 0;
+}
+
+
+.swap-card {
+  width: 250px;
+  min-height: 200px;
+  background: #f3e8ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.swap-card:hover {
+  transform: translateY(-5px);
+}
+
+.swap-card h4 {
+  margin-bottom: 0.5rem;
+  color: #4b0082;
+}
+
+.swap-card p {
+  color: #444;
+}
+
+.swap-card-btn{
+  margin-top: 1rem;
+  align-self: center;
+  padding: 8px 16px;
   border: none;
   border-radius: 20px;
-  padding: 8px 16px;
-  font-size: 14px;
+  background-color: #5837b4;
+  color: white;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
 }
 
-.main-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; /* Stack content vertically */
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+.swap-card-btn:hover {
+  background-color: #066d55;
 }
 
+/* Section Titles */
 .section-title {
-  font-size: 24px;
-  color: #8a2be2;
-  margin-bottom: 20px;
-  font-weight: bold;
+  font-size: 1.4rem !important;
+  font-weight: 600;
+  text-align: left;
+  color: #4b0082 !important;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.4px;
 }
 
-.search-add-container {
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: center; /* Center elements horizontally */
-  align-items: center; /* Align elements vertically */
-  gap: 20px; /* Adds spacing between elements */
-  margin: 0 0 10px; /* Reduce top margin to move it upwards */
+.section-title span {
+  font-size: 0.857rem;
+  font-weight: 400;
 }
 
-.search-container {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Adds spacing between the search bar and button */
-}
-
-#searchInput {
-  width: 300px;
-  height: 40px; /* Set a consistent height */
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #6200ea;
-  border-radius: 5px;
-  outline: none;
-}
-
-#searchInput:focus {
-  border-color: #3700b3;
-}
-
-#searchBtn {
-  height: 40px; /* Match the height of #searchInput */
-  width: 45px;
-  background-color: #6200ea;
-  color: white;
-  border: none;
-  padding: 0 12px; /* Adjust padding for consistent alignment */
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-#searchBtn:hover {
-  background-color: #3700b3;
-}
-
-.add-request-btn {
-  align-self: center; /* Ensure it aligns with the center of the container */
-  background-color: #7c2ae8;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 16px;
-  width: auto; /* Ensure it doesn't stretch unnecessarily */
-}
-
-.add-request-btn:hover {
-  background-color: #5a1cbf;
-}
-
-.swap-requests-container { /* ask maaaz */
-  display: flex;
-  justify-content: flex-start; /* Align content to the top */
-  align-items: flex-start;
-  flex-direction: column; /* Stack requests vertically */
-  width: 100%; /* Ensure it spans the full width */
-  padding: 20px; /* Add padding for spacing */
-}
-
+/* Responsive behavior */
 @media (max-width: 768px) {
-  .swap-requests-container {
-    margin-top: 0px; /* Further reduce margin for smaller screens */
-    padding: 0 10px; /* Reduce padding for smaller devices */
+  .dashboard-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 1rem;
+    position: static;
+    border-radius: 0;
+    margin-bottom: 1rem;
+  }
+
+  .dashboard-content {
+    margin-left: 290px;
+    padding: 3rem 2rem 2rem 2rem; /* Top padding increased */
+    flex: 1;
+  }
+  
+
+  .search-welcome-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .swap-card {
+    width: 100%;
+    height: auto;
   }
 }
