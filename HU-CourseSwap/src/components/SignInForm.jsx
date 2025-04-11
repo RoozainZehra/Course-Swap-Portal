@@ -1,68 +1,101 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  // Import the useNavigate hook
+import '../styles/signIn.css';
+import { Link } from 'react-router-dom';
 
-const SignInForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const LoginPage = () => {
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: ''
+  });
   const [rememberMe, setRememberMe] = useState(false);
 
-  const navigate = useNavigate();  // useNavigate hook to programmatically navigate
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleCheckboxChange = () => {
+    setRememberMe(!rememberMe);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Logic for form submission
-    console.log('Form submitted with:', { email, password, rememberMe });
+    // Add your authentication logic here
+    console.log('Login attempted with:', credentials);
+  };
 
-    // Simulating a login check (you can replace this with an API call or more complex logic)
-    if (email === 'rq08445@st.habib.edu.pk' && password === '123456') {
-      // After successful login, navigate to the Dashboard
-      navigate('/dashboard');
-    } else {
-      alert('Invalid credentials. Please try again.');
-    }
+  const handleForgotPassword = () => {
+    // Add your forgot password logic here
+    console.log('Forgot password clicked');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="field">
-        <input
-          type="text"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label>Email Address</label>
-      </div>
-      <div className="field">
-        <input
-          type="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <label>Password</label>
-      </div>
-      <div className="content">
-        <div className="checkbox">
-          <input
-            type="checkbox"
-            id="remember-me"
-            checked={rememberMe}
-            onChange={() => setRememberMe(!rememberMe)}
-          />
-          <label htmlFor="remember-me">Remember me</label>
-        </div>
-        <div className="pass-link">
-          <a href="#">Forgot password?</a>
+    <div className="login-container">
+      <div className="login-left-panel">
+        <h1>Welcome back!</h1>
+        <p>Sign in to Habib University Course Swap portal</p>
+        <div className="decorative-elements">
+          {/* Decorative elements like the wavy lines in the example */}
+          <div className="circle-element top-left"></div>
+          <div className="circle-element bottom-right"></div>
+          <div className="wave-element"></div>
         </div>
       </div>
-      <div className="field">
-        <input type="submit" value="Login" />
+      
+      <div className="login-form-panel">
+        <div className="login-form-container">
+          <h2>Sign In</h2>
+          
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Username or email"
+                value={credentials.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                value={credentials.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <div className="form-options">
+              <div className="remember-me">
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                  checked={rememberMe}
+                  onChange={handleCheckboxChange}
+                />
+                <label htmlFor="rememberMe">Remember me</label>
+              </div>
+            </div>
+            
+            <button type="submit" className="signin-btn">Sign In</button>
+          </form>
+          
+          <div className="create-account">
+            <p>New here? <Link to="/signup">Create an Account</Link></p>
+          </div>
+        </div>
       </div>
-    </form>
+    </div>
   );
 };
 
-export default SignInForm;
-``
+export default LoginPage;

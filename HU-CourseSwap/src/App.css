@@ -1,8 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f3efff; /* Light purple background */
+  /* If you want the gradient effect from the image */
+  background: linear-gradient(to bottom right, #f3efff, #e9dfff);
+  min-height: 100vh;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  min-height: 100vh;
+  /* background-color: #f3efff; */
 }
 
 .logo {

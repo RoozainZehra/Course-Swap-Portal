@@ -82,7 +82,7 @@ body {
   align-items: center;
   flex-direction: column; /* Stack components vertically */
   min-height: 100vh;
-  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+  background: #d9cbff;
   background-attachment: fixed;
 }
 
@@ -124,9 +124,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Stack screens vertically */
+  flex-direction: column; /* Stack screens vertically*/
   min-height: 100vh;
-}
+  }
 
 /* .screen.active {
   display: block; 
