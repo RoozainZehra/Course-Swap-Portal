@@ -15,7 +15,9 @@ const Sidebar = () => {
           <FaTachometerAlt /> Dashboard
         </li>
         <li><MdNotifications /> Notifications</li>
-        <li><FaExchangeAlt /> My Swap Requests</li>
+        <li onClick={() => navigate('/my-requests')}>
+          <FaExchangeAlt /> My Requests
+        </li>
         <li onClick={() => navigate('/profile')}>
           <FaUserCircle /> Profile
         </li>

@@ -12,18 +12,22 @@ const SwapRequests = () => {
         <div className="swap-card">
           <h4>Requested: OOP → DSA</h4>
           <p>Status: Pending</p>
+          <button className="swap-card-btn">Interested</button>
         </div>
         <div className="swap-card">
           <h4>Requested: Calculus I → DSA</h4>
           <p>Status: Pending</p>
+          <button className="swap-card-btn">Interested</button>
         </div>
         <div className="swap-card">
           <h4>Requested: EM → DSA</h4>
           <p>Status: Pending</p>
+          <button className="swap-card-btn">Interested</button>
         </div>
         <div className="swap-card">
           <h4>Requested: DBMS → Networks</h4>
           <p>Status: Approved</p>
+          <button className="swap-card-btn">Interested</button>
         </div>
       </div>
     </div>

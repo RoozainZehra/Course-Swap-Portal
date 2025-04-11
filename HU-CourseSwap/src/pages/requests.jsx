@@ -1,20 +1,26 @@
 import React from 'react';
-import EmptyState from '../components/EmptyState';  // New EmptyState component
-import '../styles/requests.css';  // Importing the requests-specific CSS file
+import Sidebar from '../components/Sidebar';
+import EmptyState from '../components/EmptyState';
+import '../styles/requests.css';
 
 const RequestsPage = () => {
   return (
-    <div className="screen" id="my-requests-screen">
-      {/* Header Component */}
-      <Header />
+    <div className="requests-layout">
+      <Sidebar />
 
-      {/* Main Content */}
-      <div className="main-content">
+      <div className="requests-main">
         <h1 className="section-title">Your Active Requests</h1>
-
-        <div className="my-requests-container">
-          {/* Empty State Component */}
-          <EmptyState />
+        <div className="requests-content">
+          {/* <div className="empty-state-wrapper">
+            <EmptyState />
+          </div> */}
+          <div className="swap-card-container">
+            <div className="swap-card">
+              <h4>Requested: OOP → DSA</h4>
+              <p>Status: Pending</p>
+              <button className="swap-card-btn1">Delete Request</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
