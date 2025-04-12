@@ -1,26 +1,38 @@
 import React from 'react';
-import Header from '../components/Header';  // Assuming you have a Header component
-import ProfileCard from '../components/profilecard';  // Assuming you have a ProfileCard component
-import Footer from '../components/Footer';  // Assuming you have a Footer component
-import '../styles/profile.css';  // Importing the profile-specific CSS file
+import { useNavigate } from 'react-router-dom';
+import ProfileCard from '../components/ProfileCard';
+import Footer from '../components/ProfileFooter';
+import '../styles/profile.css';
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  
+  const userData = {
+    name: 'Ali Ahmed',
+    email: 'aaa12345@st.habib.edu.pk',
+    phoneNumber: '0321-2345678',
+    requests: 0,
+  };
+
   return (
-    <div className="screen" id="profile-screen">
-      {/* Header Component */}
-      <Header />
-
-      {/* Profile Content */}
-      <main className="profile-content">
-        {/* Profile Card Component */}
-        <ProfileCard />
-      </main>
-
-      {/* Footer Component */}
-      <Footer />
+    <div className="screen">
+      <div className="profile-page">
+        <div className="navigation-buttons">
+          <button onClick={() => console.log('Navigating to home')}>Home</button>
+          <button onClick={() => console.log('Navigating to my requests')}>See Requests</button>
+        </div>
+        
+        <main className="profile-content">
+          <ProfileCard userData={userData} />
+        </main>
+        
+        <Footer 
+          onEditProfile={() => navigate('/edit-profile')}
+          onLogout={() => navigate('/login')} 
+        />
+      </div>
     </div>
   );
 };
 
 export default ProfilePage;
-

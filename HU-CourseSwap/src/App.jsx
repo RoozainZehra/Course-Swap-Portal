@@ -5,7 +5,8 @@ import ProfilePage from './pages/profile.jsx';
 import Dashboard from './pages/dashboard.jsx';
 import RequestsPage from './pages/requests.jsx';
 import AddRequest from './pages/addRequests.jsx';  // Import AddRequest page
-import SignUp from './components/Signup';
+import SignUp from './pages/Signup';
+import EditProfilePage from './pages/EditProfilePage'
 
 import './App.css';  // Assuming you have global styles
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/add-request" element={<AddRequest />} />
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/edit-profile" element={<EditProfilePage />} />
       </Routes>
     </Router>
   );

@@ -51,11 +51,11 @@
 
 import React from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import Header from '../components/Header.jsx';
+// import Header from '../components/Header.jsx';
 import SearchBar from '../components/SearchBar.jsx';
 import CourseSwap from '../components/CourseSwap.jsx';
 import SwapRequestsList from '../components/SwapRequestsList.jsx';
-import Signup from '../components/Signup.jsx';
+import Signup from '../pages/Signup.jsx';
 
 const Dashboard = () => {
   const location = useLocation();

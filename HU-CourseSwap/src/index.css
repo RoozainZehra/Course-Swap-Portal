@@ -92,7 +92,7 @@ body {
   left: 0;
   width: 100%; /* Ensure it spans the full width */
   z-index: 1000; /* Keep it above other elements */
-  background: #5a1cbf;
+  /* background: #5a1cbf; */
   /* padding: 25px 30px; */
   display: flex;
   justify-content: space-between; /* Space out elements in the header */

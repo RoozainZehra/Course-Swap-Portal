@@ -1,13 +1,18 @@
-import React from 'react';
+// import React from 'react';
+// import { Home } from 'lucide-react';
+// // import '../styles/Header.css';
 
-const Header = () => {
-  return (
-    <header className="header">
-      <img src="/assets/logo.png" alt="Logo" className="header-logo" />
-      <div className="platform-title">HABIB UNIVERSITY COURSE SWAP PORTAL</div>
-      <button className="profile-btn">Profile</button>
-    </header>
-  );
-};
+// const Header = () => {
+//   return (
+//     <div className="app-header">
+//       <a href="#" className="home-link">
+//         <Home size={20} />
+//       </a>
+//       <button className="request-button">
+//         See requests
+//       </button>
+//     </div>
+//   );
+// };
 
-export default Header;
+// export default Header;
