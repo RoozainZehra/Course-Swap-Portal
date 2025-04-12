@@ -1,15 +1,12 @@
 import React from 'react';
-import ProfileImage from './ProfileImage';  // Import the ProfileImage component
-import ProfileDetails from './ProfileDetails';  // Import the ProfileDetails component
+import ProfileImage from './ProfileAvatar';
+import ProfileDetails from './ProfileInfo';
 
-const ProfileCard = () => {
+const ProfileCard = ({ userData }) => {
   return (
     <div className="profile-card">
-      {/* Profile Image Component */}
-      <ProfileImage />
-
-      {/* Profile Details Component */}
-      <ProfileDetails />
+      <ProfileImage src={userData.profileImage} />
+      <ProfileDetails userData={userData} />
     </div>
   );
 };
