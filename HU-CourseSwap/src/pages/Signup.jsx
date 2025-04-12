@@ -29,6 +29,11 @@ const SignUp = () => {
     }
   };
 
+  const validateHUEmail = (email) => {
+    const huEmailPattern = /^[a-z]{2}\d{5}@st\.habib\.edu\.pk$/;
+    return huEmailPattern.test(email);
+  };
+
   const validateForm = () => {
     const newErrors = {};
     
@@ -38,8 +43,9 @@ const SignUp = () => {
     
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+    } 
+    else if (!validateHUEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid Habib University student email';
     }
     
     if (!formData.password) {
