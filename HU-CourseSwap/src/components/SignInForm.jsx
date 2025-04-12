@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/signIn.css';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
