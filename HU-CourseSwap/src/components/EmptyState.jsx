@@ -5,9 +5,9 @@ const EmptyState = () => {
     <div className="empty-state" id="my-requests-empty-state">
       <div className="empty-state-icon">📋</div>    
       <div className="empty-state-text">
-        You haven't made any swap requests yet
+        Nothing to Show.
       </div>
-      <div>Create a swap request from the main dashboard</div>
+      <div>Move back to the main dashboard to see available Requests.</div>
     </div>
   );
 };

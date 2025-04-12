@@ -14,7 +14,9 @@ const Sidebar = () => {
         <li onClick={() => navigate('/dashboard')}>
           <FaTachometerAlt /> Dashboard
         </li>
-        <li><MdNotifications /> Notifications</li>
+        <li onClick={() => navigate('/notifications')}>
+          <MdNotifications /> Notifications
+        </li>
         <li onClick={() => navigate('/my-requests')}>
           <FaExchangeAlt /> My Requests
         </li>

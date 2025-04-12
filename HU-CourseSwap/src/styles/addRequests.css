@@ -1,33 +1,56 @@
+.screen {
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+  align-items: flex-start; /*Or center, if you want vertical centering
+  /* background: linear-gradient(to bottom right, #d8b4fe, #a78bfa); */
+}
+
 .course-form-container {
   position: relative;
   width: 100%;
-  max-width: 700px;
-  /* margin: 40px auto; */
+  max-width: 900px;
   padding: 24px;
   background: linear-gradient(135deg, #6e45e2 0%, #88619a 100%);
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.home-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+.back-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.back-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #10b981;
   color: white;
-  /* font-weight: bold; */
-  /* text-decoration: none; */
-  font-size: 14px;
-  /* background: rgba(255, 255, 255, 0.2); */
-  /* padding: 6px 12px; */
-  border-radius: 8px;
-  transition: background 0.3s ease;
+  border: none;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+  padding: 12px 28px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-.home-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+.back-btn:hover {
+  background-color: #059669;
+  transform: scale(1.05);
 }
 
-.form-content {
+/* Horizontal Layout */
+.form-content-horizontal {
   background-color: #fff;
   border-radius: 16px;
   padding: 24px;
@@ -35,7 +58,17 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
+.section-row {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .course-section {
+  flex: 1;
+  min-width: 280px;
   background-color: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -43,15 +76,15 @@
   margin-bottom: 20px;
 }
 
+.form-group {
+  margin-top: 16px;
+  position: relative;
+}
+
 .input-container {
   position: relative;
   display: flex;
   align-items: center;
-}
-
-.form-group {
-  margin-top: 16px;
-  position: relative;
 }
 
 .form-select {
@@ -89,7 +122,7 @@
   padding: 12px 28px;
   border-radius: 9999px;
   border: none;
-  background:  #5837b4;
+  background: #5837b4;
   color: white;
   font-weight: 600;
   font-size: 16px;
@@ -98,104 +131,7 @@
 }
 
 .submit-btn:hover {
-  background: linear-gradient(to right, #10b981, #059669);
+  background:  #059669;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
-}
-
-.back-btn-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 2rem;
-}
-
-.back-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background-color: #10b981;
-  color: white;
-  border: none;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.back-btn:hover {
-  background-color: #059669;
-  transform: scale(1.05);
-}
-
-small {
-  display: block;
-  font-size: 12px;
-  color: #6b7280;
-  margin-top: 6px;
-}
-
-.days-selection {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.day-btn {
-  padding: 10px 0;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 13px;
-  cursor: pointer;
-  background-color: white;
-  text-align: center;
-  flex: 1;
-  transition: all 0.2s ease-in-out;
-}
-
-.day-btn.active {
-  background-color: #ede9fe;
-  border-color: #c4b5fd;
-  color: #5b21b6;
-  font-weight: 500;
-}
-
-.time-input {
-  display: flex;
-  align-items: center;
-  border: 2px solid #c4b5fd;
-  border-radius: 8px;
-  padding: 6px 10px;
-  margin-top: 2rem;
-}
-
-.time-input input {
-  border: none;
-  outline: none;
-  background: transparent;
-  flex: 1;
-  font-size: 14px;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 2rem;
-}
-
-.post-btn {
-  background-color: #4ade80;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 28px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.post-btn:hover {
-  background-color: #22c55e;
+  box-shadow:  #059669;
 }
