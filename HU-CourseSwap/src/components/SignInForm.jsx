@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/signIn.css';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -8,6 +8,7 @@ const LoginPage = () => {
     password: ''
   });
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +26,8 @@ const LoginPage = () => {
     e.preventDefault();
     // Add your authentication logic here
     console.log('Login attempted with:', credentials);
+
+    navigate('/dashboard');
   };
 
   const handleForgotPassword = () => {
