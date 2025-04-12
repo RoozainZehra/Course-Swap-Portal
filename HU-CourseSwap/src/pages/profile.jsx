@@ -18,8 +18,8 @@ const ProfilePage = () => {
     <div className="screen">
       <div className="profile-page">
         <div className="navigation-buttons">
-          <button onClick={() => console.log('Navigating to home')}>Home</button>
-          <button onClick={() => console.log('Navigating to my requests')}>See Requests</button>
+          <button onClick={() => navigate('/dashboard')}>Home</button>
+          <button onClick={() => navigate('/my-requests')}>See Requests</button>
         </div>
         
         <main className="profile-content">
