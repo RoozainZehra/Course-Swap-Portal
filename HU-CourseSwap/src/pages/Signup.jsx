@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles/SignUp.css'; // Update this path if needed
 import { auth } from "../../firebase/firebaseConfig";
 import { createUserWithEmailAndPasswordHandler } from "../../firebase/auth_signup_password"; // Adjust path as needed
-// import validatePassword from '../firebase/auth_validate_password'; // Adjust path as needed
+import { validatePasswordHandler } from "../../firebase/auth_validate_password";
 import logo from '../assets/logo.png'; // Adjust path as needed
+import { validatePassword } from 'firebase/auth';
 
 
 const SignUp = () => {
@@ -37,53 +38,66 @@ const SignUp = () => {
     return huEmailPattern.test(email);
   };
 
-  const validateForm = () => {
+  const validateForm = async () => {
     const newErrors = {};
-    
+  
     if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full name is required';
+      newErrors.fullName = "Full name is required";
     }
-    
+  
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } 
-
-    if (!validateHUEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid Habib University student email';
+      newErrors.email = "Email is required";
+    } else if (!validateHUEmail(formData.email)) {
+      newErrors.email = "Please enter a valid Habib University student email";
     }
-
-    if (formData.password !== formData.confirmPassword) { // Check if passwords match
-      setErrors({ confirmPassword: "Passwords do not match" });
-      return;
+  
+    // Await the result of validatePasswordHandler
+    const validPassword = await validatePasswordHandler(formData.password);
+  
+    if (!validPassword.isValid) {
+      if (validPassword.needsLowerCase) {
+        newErrors.password = "Password must contain at least one lowercase letter.";
+      }
+      if (validPassword.needsUpperCase) {
+        newErrors.password = "Password must contain at least one uppercase letter.";
+      }
+      if (validPassword.needsNumber) {
+        newErrors.password = "Password must contain at least one number.";
+      }
+      if (validPassword.needsMinLength) {
+        newErrors.password = "Password must be at least 6 characters long.";
+      }
     }
-
+  
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match";
+    }
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (validateForm()) { //all good, proceed to signup
-      console.log('Form submitted:', formData);
-      createUserWithEmailAndPasswordHandler(formData.email, formData.password)
-        .then((user) => {
-          console.log("Signup successful:", user);
-          navigate("/");
-        })
-        .catch((error) => {
-          console.error("Signup failed:", error.message);
-          alert("Signup failed. Please try again.");
-        });
-      alert('Account created successfully!');
-    }
-
-    else {
-      console.log('Form validation failed:', errors);
-      // alert('Please fix the errors in the form.');
-    }
-
-  };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+    
+      const isValid = await validateForm();
+    
+      if (isValid) {
+        console.log("Form submitted:", formData);
+        createUserWithEmailAndPasswordHandler(formData.email, formData.password)
+          .then((user) => {
+            console.log("Signup successful:", user);
+            alert("Account created successfully!");
+            navigate("/");
+          })
+          .catch((error) => {
+            console.error("Signup failed:", error.message);
+            alert("Signup failed. Please try again.");
+          });
+      } else {
+        console.log("Form validation failed:", errors);
+      }
+    };
 
   return (
     <div className="signup-container">
