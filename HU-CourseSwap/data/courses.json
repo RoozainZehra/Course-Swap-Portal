@@ -1,0 +1,736 @@
+{
+  "courses": [
+    {
+      "code": "COM 323",
+      "title": "After Digital Welcome to Creative Industries",
+      "sections": [
+        {
+          "class": "1041",
+          "section": "S1-SEM",
+          "days_times": "We 12:50 - 15:20",
+          "room": "H-506",
+          "instructor": "Abdul Rafay Mahmood"
+        }
+      ]
+    },
+    {
+      "code": "COM 325",
+      "title": "Animation Against Despotism_Labour, Politics, and Aesthetics",
+      "sections": [
+        {
+          "class": "1042",
+          "section": "L1-LEC",
+          "days_times": "Tu 08:30 - 11:00",
+          "room": "LG-09 Film Studio",
+          "instructor": "Behzad Khosravi Noori"
+        }
+      ]
+    },
+    {
+      "code": "COM 326",
+      "title": "Hear & Now: Nonfiction Storytelling in Audio",
+      "sections": [
+        {
+          "class": "1043",
+          "section": "D1-STD",
+          "days_times": "Tu 08:30 - 11:50",
+          "room": "GF-C109 Arif Habib Classroom",
+          "instructor": "Mariya Azher"
+        }
+      ]
+    },
+    {
+      "code": "COM 336",
+      "title": "Queer Fictions, Queer Futures",
+      "sections": [
+        {
+          "class": "1044",
+          "section": "S1-SEM",
+          "days_times": "TuTh 10:00 - 11:15",
+          "room": "E-011 Classroom",
+          "instructor": "Christie Lauder"
+        }
+      ]
+    },
+    {
+      "code": "CS-CE 102L-171L",
+      "title": "Data Structures and Algorithms (Lab)",
+      "sections": [
+        {
+          "class": "1108",
+          "section": "T1-LAB",
+          "days_times": "Fr 15:30 - 18:30",
+          "room": "GF-E101 Casim Computing Lab",
+          "instructor": "Unaiza Ahsan"
+        },
+        {
+          "class": "1109",
+          "section": "T2-LAB",
+          "days_times": "We 09:40 - 12:40",
+          "room": "W-110 Math Lab",
+          "instructor": "Mohammad Salman"
+        },
+        {
+          "class": "1110",
+          "section": "T3-LAB",
+          "days_times": "Fr 10:00 - 13:00",
+          "room": "E-010 Graphics & Visualization",
+          "instructor": "Nadia Nasir"
+        },
+        {
+          "class": "1111",
+          "section": "T4-LAB",
+          "days_times": "We 09:40 - 12:40",
+          "room": "E-003 Linux & Networking Lab",
+          "instructor": "Amber Aftab"
+        },
+        {
+          "class": "1112",
+          "section": "T5-LAB",
+          "days_times": "Mo 14:30 - 17:30",
+          "room": "GF-E101 Casim Computing Lab",
+          "instructor": "Maria Samad"
+        },
+        {
+          "class": "1113",
+          "section": "T6-LAB",
+          "days_times": "Fr 08:40 - 11:40",
+          "room": "Second Floor Computer Lab",
+          "instructor": "Unaiza Ahsan"
+        },
+        {
+          "class": "1114",
+          "section": "T7-LAB",
+          "days_times": "Fr 10:00 - 13:00",
+          "room": "GF-E101 Casim Computing Lab",
+          "instructor": "Saba Saeed"
+        }
+      ]
+    },
+    {
+      "code": "CS-CE 201-372",
+      "title": "Data Structures II",
+      "sections": [
+        {
+          "class": "1116",
+          "section": "L1-LEC",
+          "days_times": "We 14:30 - 15:45",
+          "room": "C-200 Classroom",
+          "instructor": "Faisal Alvi"
+        },
+        {
+          "class": "1117",
+          "section": "L2-LEC",
+          "days_times": "MoWe 13:00 - 14:15",
+          "room": "FF-N219 Classroom",
+          "instructor": "Muhammad Usman Arif"
+        },
+        {
+          "class": "1118",
+          "section": "L3-LEC",
+          "days_times": "We 14:30 - 15:45",
+          "room": "FF-W242 Classroom",
+          "instructor": "Muhammad Usman Arif"
+        },
+        {
+          "class": "1119",
+          "section": "L4-LEC",
+          "days_times": "TuTh 15:50 - 17:05",
+          "room": "GF-C109 Arif Habib Classroom",
+          "instructor": "Maria Samad"
+        }
+      ]
+    },
+    {
+      "code": "CS-CE 412-471",
+      "title": "Algorithms: Design and Analysis",
+      "sections": [
+        {
+          "class": "1131",
+          "section": "L1-LEC",
+          "days_times": "MoWe 11:30 - 12:45",
+          "room": "H-506",
+          "instructor": "Waqar Saleem"
+        },
+        {
+          "class": "1133",
+          "section": "L3-LEC",
+          "days_times": "TuTh 11:30 - 12:45",
+          "room": "H-507",
+          "instructor": "Syed Hammad Ahmed"
+        },
+        {
+          "class": "1134",
+          "section": "L4-LEC",
+          "days_times": "TuTh 17:15 - 18:30",
+          "room": "FF-N219",
+          "instructor": "Syed Hammad Ahmed"
+        },
+        {
+          "class": "1135",
+          "section": "L5-LEC",
+          "days_times": "MoWe 14:30 - 15:45",
+          "room": "FF-N219",
+          "instructor": "Ayesha Enayet"
+        },
+        {
+          "class": "1136",
+          "section": "L6-LEC",
+          "days_times": "MoWe 08:30 - 09:45",
+          "room": "FF-N219",
+          "instructor": "Ayesha Enayet"
+        }
+      ]
+    },
+    {
+      "code": "ECON 121",
+      "title": "Principles of Macroeconomics",
+      "sections": [
+        {
+          "class": "1161",
+          "section": "L1-LEC",
+          "days_times": "MoWe 16:00 - 17:15",
+          "room": "FF-W242 Classroom",
+          "instructor": "Mohammad Moeini Feizabadi"
+        }
+      ]
+    },
+    {
+      "code": "ECON 205",
+      "title": "Theories of Money, Banking and Financial Markets",
+      "sections": [
+        {
+          "class": "1162",
+          "section": "L1-LEC",
+          "days_times": "MoWe 14:30 - 15:45",
+          "room": "GF-C109 Arif Habib Classroom",
+          "instructor": "Mohammad Moeini Feizabadi"
+        }
+      ]
+    },
+    {
+      "code": "MUS 228",
+      "title": "Folk Music-The indigenous Sound of South Asia",
+      "sections": [
+        {
+          "class": "1263",
+          "section": "S1-SEM",
+          "days_times": "TuTh 11:30 - 12:45",
+          "room": "FF-W243 Executive Classroom",
+          "instructor": "Shahid Hamid"
+        }
+      ]
+    },
+    {
+      "code": "MUS 300",
+      "title": "Breakthrough into Performance",
+      "sections": [
+        {
+          "class": "1264",
+          "section": "S1-SEM",
+          "days_times": "MoFr 10:00 - 11:15",
+          "room": "FF-W243 Executive Classroom",
+          "instructor": "Aaron Mulvany"
+        }
+      ]
+    },
+    {
+      "code": "CORE 121",
+      "title": "Jehan-e-Urdu (The World of Urdu)",
+      "sections": [
+        {
+          "class": "1062",
+          "section": "L1-LEC",
+          "days_times": "Mo 12:40 - 13:30",
+          "room": "FF-E220 Tariq Rafi Hall",
+          "instructor": "Zahra Sabri, Syed Afzal Ahmed, Inam Ullah"
+        },
+        {
+          "class": "1063",
+          "section": "S1-SEM",
+          "days_times": "TuTh 14:25 - 15:40",
+          "room": "E-011 Classroom",
+          "instructor": "Inam Ullah"
+        },
+        {
+          "class": "1064",
+          "section": "S2-SEM",
+          "days_times": "TuTh 17:15 - 18:30",
+          "room": "GF-E121 Soorty Lecture Hall",
+          "instructor": "Syed Afzal Ahmed"
+        },
+        {
+          "class": "1065",
+          "section": "S3-SEM",
+          "days_times": "WeFr 08:30 - 09:45",
+          "room": "C-200 Classroom",
+          "instructor": "Zahra Sabri"
+        }
+      ]
+    },
+    {
+      "code": "DEV 212",
+      "title": "Urban Sustainability",
+      "sections": [
+        {
+          "class": "1157",
+          "section": "S1-SEM",
+          "days_times": "WeFr 10:00 - 11:15",
+          "room": "FF-N220 SCB",
+          "instructor": "Farhan Anwar"
+        }
+      ]
+    },
+    {
+      "code": "DEV 322",
+      "title": "Introduction to Program Planning and Design",
+      "sections": [
+        {
+          "class": "1158",
+          "section": "L1-LEC",
+          "days_times": "Mo 08:30 - 11:00",
+          "room": "GF-C109 Arif Habib Classroom",
+          "instructor": "Shama Dossa"
+        }
+      ]
+    },
+    {
+      "code": "HIST 103",
+      "title": "Global Histories: Colonialism from the Americas to Palestine",
+      "sections": [
+        {
+          "class": "1219",
+          "section": "S1-SEM",
+          "days_times": "TuTh 08:30 - 10:10",
+          "room": "H-503",
+          "instructor": "Gabriel Soares"
+        }
+      ]
+    },
+    {
+      "code": "HIST 227",
+      "title": "Understanding Histories: Historiography and Historical Methods",
+      "sections": [
+        {
+          "class": "1220",
+          "section": "L1-LEC",
+          "days_times": "WeFr 11:30 - 13:10",
+          "room": "W-321 Classroom",
+          "instructor": "Gabriel Soares"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 211",
+      "title": "Basic Electronics",
+      "sections": [
+        {
+          "class": "1171",
+          "section": "LEC",
+          "days_times": "MoWe 17:15 - 18:30",
+          "room": "FF-W242 Classroom",
+          "instructor": "Ahmad Usman"
+        },
+        {
+          "class": "1172",
+          "section": "LEC",
+          "days_times": "TuTh 11:30 - 12:45",
+          "room": "H-503",
+          "instructor": "Syed Arsalan"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 211L",
+      "title": "Basic Electronics (Lab)",
+      "sections": [
+        {
+          "class": "1174",
+          "section": "T1-LAB",
+          "days_times": "We 13:40 - 16:40",
+          "room": "Digital Sys. & Instrument. Lab",
+          "instructor": "Ahmad Bilal"
+        },
+        {
+          "class": "1175",
+          "section": "T2-LAB",
+          "days_times": "Tu 14:40 - 17:40",
+          "room": "Digital Sys. & Instrument. Lab",
+          "instructor": "Hira Mustafa"
+        },
+        {
+          "class": "1176",
+          "section": "T3-LAB",
+          "days_times": "Th 14:40 - 17:40",
+          "room": "Digital Sys. & Instrument. Lab",
+          "instructor": "Hira Mustafa"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 252-251",
+      "title": "Signals and Systems",
+      "sections": [
+        {
+          "class": "1177",
+          "section": "L1-LEC",
+          "days_times": "TuTh 10:00 - 11:15",
+          "room": "H-509",
+          "instructor": "Shafayat Abrar"
+        },
+        {
+          "class": "1178",
+          "section": "L2-LEC",
+          "days_times": "TuTh 10:00 - 11:15",
+          "room": "FF-N219 Classroom",
+          "instructor": "Tariq Mumtaz"
+        },
+        {
+          "class": "1179",
+          "section": "L3-LEC",
+          "days_times": "TuTh 10:00 - 11:15",
+          "room": "GF-E121 Soorty Lecture Hall",
+          "instructor": "Hamood ur Rehman Khan"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 252L-251L",
+      "title": "Signals and Systems (Lab)",
+      "sections": [
+        {
+          "class": "1180",
+          "section": "T1-LAB",
+          "days_times": "We 13:40 - 16:40",
+          "room": "W-110 Math Lab",
+          "instructor": "Hira Mustafa"
+        },
+        {
+          "class": "1181",
+          "section": "T2-LAB",
+          "days_times": "Fr 15:30 - 18:30",
+          "room": "W-110 Math Lab",
+          "instructor": "Zareen Tabassum"
+        },
+        {
+          "class": "1182",
+          "section": "T3-LAB",
+          "days_times": "Th 14:30 - 17:30",
+          "room": "W-110 Math Lab",
+          "instructor": "Zareen Tabassum"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 376L-332L",
+      "title": "Microcontrollers and Interfacing (Lab)",
+      "sections": [
+        {
+          "class": "1360",
+          "section": "T1-LAB",
+          "days_times": "Mo 13:40 - 16:40",
+          "room": "LG-C001 Circuits & Electronic",
+          "instructor": "Abeera Farooq Alam"
+        },
+        {
+          "class": "1361",
+          "section": "T2-LAB",
+          "days_times": "Tu 14:40 - 17:40",
+          "room": "LG-C001 Circuits & Electronic",
+          "instructor": "Abeera Farooq Alam"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 391L",
+      "title": "Engineering, Design and Innovation (Lab)",
+      "sections": [
+        {
+          "class": "1191",
+          "section": "D1-STD",
+          "days_times": "TuTh 14:30 - 17:00",
+          "room": "H-501",
+          "instructor": "Munzir Zafar"
+        },
+        {
+          "class": "1192",
+          "section": "D2-STD",
+          "days_times": "TuTh 14:30 - 17:00",
+          "room": "H-502",
+          "instructor": "Mirza Muhammad Amir, Saad Baig"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 421-443",
+      "title": "Wireless Network Systems",
+      "sections": [
+        {
+          "class": "1193",
+          "section": "L1-LEC",
+          "days_times": "MoWe 13:00 - 14:15",
+          "room": "FF-W242 Classroom",
+          "instructor": "Tariq Mumtaz"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 452-461",
+      "title": "Computer Vision",
+      "sections": [
+        {
+          "class": "1195",
+          "section": "L1-LEC",
+          "days_times": "MoWe 16:00 - 17:15",
+          "room": "E-012 Classroom",
+          "instructor": "Muhammad Farhan"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 453-352",
+      "title": "Digital Signal Processing",
+      "sections": [
+        {
+          "class": "1197",
+          "section": "L1-LEC",
+          "days_times": "WeFr 11:30 - 12:45",
+          "room": "E-012 Classroom",
+          "instructor": "Saad Baig"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 453L-352L",
+      "title": "Digital Signal Processing (Lab)",
+      "sections": [
+        {
+          "class": "1198",
+          "section": "T1-LAB",
+          "days_times": "Mo 09:40 - 12:40",
+          "room": "W-110 Math Lab",
+          "instructor": "Shafayat Abrar"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 472-430",
+      "title": "Embedded Systems",
+      "sections": [
+        {
+          "class": "1317",
+          "section": "L1-LEC",
+          "days_times": "Tu 08:30 - 11:00",
+          "room": "LG-C001 Circuits & Electronic",
+          "instructor": "Waseem Hassan"
+        }
+      ]
+    },
+    {
+      "code": "DEV 212",
+      "title": "Urban Sustainability",
+      "sections": [
+        {
+          "class": "1157",
+          "section": "S1-SEM",
+          "days_times": "WeFr 10:00 - 11:15",
+          "room": "FF-N220 SCB",
+          "instructor": "Farhan Anwar"
+        }
+      ]
+    },
+    {
+      "code": "DEV 322",
+      "title": "Introduction to Program Planning and Design",
+      "sections": [
+        {
+          "class": "1158",
+          "section": "L1-LEC",
+          "days_times": "Mo 08:30 - 11:00",
+          "room": "GF-C109 Arif Habib Classroom",
+          "instructor": "Shama Dossa"
+        }
+      ]
+    },
+    {
+      "code": "HIST 103",
+      "title": "Global Histories: Colonialism from the Americas to Palestine",
+      "sections": [
+        {
+          "class": "1219",
+          "section": "S1-SEM",
+          "days_times": "TuTh 08:30 - 10:10",
+          "room": "H-503",
+          "instructor": "Gabriel Soares"
+        }
+      ]
+    },
+    {
+      "code": "HIST 227",
+      "title": "Understanding Histories: Historiography and Historical Methods",
+      "sections": [
+        {
+          "class": "1220",
+          "section": "L1-LEC",
+          "days_times": "WeFr 11:30 - 13:10",
+          "room": "W-321 Classroom",
+          "instructor": "Gabriel Soares"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 211",
+      "title": "Basic Electronics",
+      "sections": [
+        {
+          "class": "1171",
+          "section": "LEC",
+          "days_times": "MoWe 17:15 - 18:30",
+          "room": "FF-W242 Classroom",
+          "instructor": "Ahmad Usman"
+        },
+        {
+          "class": "1172",
+          "section": "LEC",
+          "days_times": "TuTh 11:30 - 12:45",
+          "room": "H-503",
+          "instructor": "Syed Arsalan"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 211L",
+      "title": "Basic Electronics (Lab)",
+      "sections": [
+        {
+          "class": "1174",
+          "section": "T1-LAB",
+          "days_times": "We 13:40 - 16:40",
+          "room": "Digital Sys. & Instrument. Lab",
+          "instructor": "Ahmad Bilal"
+        },
+        {
+          "class": "1175",
+          "section": "T2-LAB",
+          "days_times": "Tu 14:40 - 17:40",
+          "room": "Digital Sys. & Instrument. Lab",
+          "instructor": "Hira Mustafa"
+        },
+        {
+          "class": "1176",
+          "section": "T3-LAB",
+          "days_times": "Th 14:40 - 17:40",
+          "room": "Digital Sys. & Instrument. Lab",
+          "instructor": "Hira Mustafa"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 252-251",
+      "title": "Signals and Systems",
+      "sections": [
+        {
+          "class": "1177",
+          "section": "L1-LEC",
+          "days_times": "TuTh 10:00 - 11:15",
+          "room": "H-509",
+          "instructor": "Shafayat Abrar"
+        },
+        {
+          "class": "1178",
+          "section": "L2-LEC",
+          "days_times": "TuTh 10:00 - 11:15",
+          "room": "FF-N219 Classroom",
+          "instructor": "Tariq Mumtaz"
+        },
+        {
+          "class": "1179",
+          "section": "L3-LEC",
+          "days_times": "TuTh 10:00 - 11:15",
+          "room": "GF-E121 Soorty Lecture Hall",
+          "instructor": "Hamood ur Rehman Khan"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 252L-251L",
+      "title": "Signals and Systems (Lab)",
+      "sections": [
+        {
+          "class": "1180",
+          "section": "T1-LAB",
+          "days_times": "We 13:40 - 16:40",
+          "room": "W-110 Math Lab",
+          "instructor": "Hira Mustafa"
+        },
+        {
+          "class": "1181",
+          "section": "T2-LAB",
+          "days_times": "Fr 15:30 - 18:30",
+          "room": "W-110 Math Lab",
+          "instructor": "Zareen Tabassum"
+        },
+        {
+          "class": "1182",
+          "section": "T3-LAB",
+          "days_times": "Th 14:30 - 17:30",
+          "room": "W-110 Math Lab",
+          "instructor": "Zareen Tabassum"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 376L-332L",
+      "title": "Microcontrollers and Interfacing (Lab)",
+      "sections": [
+        {
+          "class": "1360",
+          "section": "T1-LAB",
+          "days_times": "Mo 13:40 - 16:40",
+          "room": "LG-C001 Circuits & Electronic",
+          "instructor": "Abeera Farooq Alam"
+        },
+        {
+          "class": "1361",
+          "section": "T2-LAB",
+          "days_times": "Tu 14:40 - 17:40",
+          "room": "LG-C001 Circuits & Electronic",
+          "instructor": "Abeera Farooq Alam"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 391L",
+      "title": "Engineering, Design and Innovation (Lab)",
+      "sections": [
+        {
+          "class": "1191",
+          "section": "D1-STD",
+          "days_times": "TuTh 14:30 - 17:00",
+          "room": "H-501",
+          "instructor": "Munzir Zafar"
+        },
+        {
+          "class": "1192",
+          "section": "D2-STD",
+          "days_times": "TuTh 14:30 - 17:00",
+          "room": "H-502",
+          "instructor": "Mirza Muhammad Amir, Saad Baig"
+        }
+      ]
+    },
+    {
+      "code": "EE-CE 421-443",
+      "title": "Wireless Network Systems",
+      "sections": [
+        {
+          "class": "1193",
+          "section": "L1-LEC",
+          "days_times": "MoWe 13:00 - 14:15",
+          "room": "FF-W242 Classroom",
+          "instructor": "Tariq Mumtaz"
+        }
+      ]
+    }
+  ]
+}

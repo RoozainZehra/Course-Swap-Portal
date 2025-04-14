@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+#firebase stuff
+serviceAccountKey.json
 .env
 
 # Editor directories and files
