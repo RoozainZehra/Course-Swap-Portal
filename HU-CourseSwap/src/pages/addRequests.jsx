@@ -2,14 +2,43 @@ import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 import '../styles/addRequests.css';
+import { useEffect} from 'react';
+import { db } from '../../firebase/firebaseConfig'; // make sure this path is correct
+import { collection, getDocs } from 'firebase/firestore';
 
 const AddRequest = () => {
+  const [coursesData, setCoursesData] = useState([]);
+  const [courseOptions, setCourseOptions] = useState([]);
+  const [sectionOptions, setSectionOptions] = useState([]);
+
   const [haveCourse, setHaveCourse] = useState('');
   const [haveSection, setHaveSection] = useState('');
   const [wantCourse, setWantCourse] = useState('');
   const [wantSection, setWantSection] = useState('');
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "courses"));
+        const data = querySnapshot.docs.map(doc => doc.data());
+
+        // Extract course names and sections
+        const uniqueCourses = [...new Set(data.map(course => course.name))];
+        const uniqueSections = [...new Set(data.map(course => course.Section))];
+
+        setCourseOptions(uniqueCourses);
+        setSectionOptions(uniqueSections);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+  
+
   const handleSubmit = () => {
     console.log('Form Submitted', { haveCourse, haveSection, wantCourse, wantSection });
   };
@@ -34,10 +63,11 @@ const AddRequest = () => {
                     className="form-select"
                   >
                     <option value="">Select a course</option>
-                    <option value="cs101">MATH101 - Calculus I</option>
-                    <option value="math201">PHIL/CS 223/223 - Ethics of Artificial Intelligence</option>
-                    <option value="phy301">EE/CS 371/330 - Computer Architecture</option>
-                    <option value="bus102">CS/CE 412/471 - Algorithms: Design and Analysis</option>
+                    {courseOptions.map((course, index) => (
+                      <option key={index} value={course}>{course}</option>
+                    ))}
+
+
                   </select>
                   <span className="select-arrow">▼</span>
                 </div>
@@ -51,11 +81,10 @@ const AddRequest = () => {
                     onChange={(e) => setHaveSection(e.target.value)}
                     className="form-select"
                   >
-                    <option value="">Select a section</option>
-                    <option value="A">L1</option>
-                    <option value="B">L2</option>
-                    <option value="C">L3</option>
-                    <option value="D">L4</option>
+                    {sectionOptions.map((section, index) => (
+                      <option key={index} value={section}>{section}</option>
+                    ))}
+
                   </select>
                   <span className="select-arrow">▼</span>
                 </div>
@@ -73,10 +102,10 @@ const AddRequest = () => {
                     className="form-select"
                   >
                     <option value="">Select a course</option>
-                    <option value="cs101">MATH101 - Calculus I</option>
-                    <option value="math201">PHIL/CS 223/223 - Ethics of Artificial Intelligence</option>
-                    <option value="phy301">EE/CS 371/330 - Computer Architecture</option>
-                    <option value="bus102">CS/CE 412/471 - Algorithms: Design and Analysis</option>
+                      {courseOptions.map((course, index) => (
+                        <option key={index} value={course}>{course}</option>
+                      ))}                    
+                  
                   </select>
                   <span className="select-arrow">▼</span>
                 </div>
@@ -91,10 +120,9 @@ const AddRequest = () => {
                     className="form-select"
                   >
                     <option value="">Select a section</option>
-                    <option value="A">L1</option>
-                    <option value="B">L2</option>
-                    <option value="C">L3</option>
-                    <option value="D">L4</option>
+                      {sectionOptions.map((section, index) => (
+                        <option key={index} value={section}>{section}</option>
+                      ))}
                   </select>
                   <span className="select-arrow">▼</span>
                 </div>
