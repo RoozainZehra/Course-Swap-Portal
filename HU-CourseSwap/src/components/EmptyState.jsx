@@ -7,7 +7,7 @@ const EmptyState = () => {
       <div className="empty-state-text">
         Nothing to Show.
       </div>
-      <div>Move back to the main dashboard to see available Requests.</div>
+      <div>You're all caught up.</div>
     </div>
   );
 };

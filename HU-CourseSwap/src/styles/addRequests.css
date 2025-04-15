@@ -135,3 +135,10 @@
   transform: translateY(-2px);
   box-shadow:  #059669;
 }
+
+.warning-message {
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 10px;
+}

@@ -7,41 +7,72 @@ import { db } from '../../firebase/firebaseConfig'; // make sure this path is co
 import { collection, getDocs } from 'firebase/firestore';
 
 const AddRequest = () => {
+  const [warning, setWarning] = useState('');
+
+
   const [coursesData, setCoursesData] = useState([]);
-  const [courseOptions, setCourseOptions] = useState([]);
-  const [sectionOptions, setSectionOptions] = useState([]);
-
   const [haveCourse, setHaveCourse] = useState('');
+  const [haveSectionOptions, setHaveSectionOptions] = useState([]);
   const [haveSection, setHaveSection] = useState('');
+  
   const [wantCourse, setWantCourse] = useState('');
-  const [wantSection, setWantSection] = useState('');
-
+  const [wantSectionOptions, setWantSectionOptions] = useState([]);
+  const [wantSection, setWantSection] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "courses"));
-        const data = querySnapshot.docs.map(doc => doc.data());
-
-        // Extract course names and sections
-        const uniqueCourses = [...new Set(data.map(course => course.name))];
-        const uniqueSections = [...new Set(data.map(course => course.Section))];
-
-        setCourseOptions(uniqueCourses);
-        setSectionOptions(uniqueSections);
+        const data = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setCoursesData(data);
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
     };
-
+  
     fetchCourses();
   }, []);
+
+  useEffect(() => {
+    const selected = coursesData.find(course => course.code === haveCourse);
+    setHaveSectionOptions(selected?.sections || []);
+  }, [haveCourse, coursesData]);
+  
+  useEffect(() => {
+    const selected = coursesData.find(course => course.code === wantCourse);
+    setWantSectionOptions(selected?.sections || []);
+  }, [wantCourse, coursesData]);
+  
   
 
   const handleSubmit = () => {
     console.log('Form Submitted', { haveCourse, haveSection, wantCourse, wantSection });
   };
+
+  const handleWantSectionChange = (value) => {
+    if (!wantCourse) {
+      setWarning('⚠️ Please select a course before choosing a section in the "Want" column.');
+      setWantSection('');
+    } else {
+      setWarning('');
+      setWantSection(value);
+    }
+  };
+
+  const handleHaveSectionChange = (value) => {
+    if (!haveCourse) {
+      setWarning('Please select a course first for the "Have" section.');
+      setHaveSection('');
+    } else {
+      setWarning('');
+      setHaveSection(value);
+    }
+  };
+  
 
   return (
     <div className="screen" id="course-schedule-screen">
@@ -52,6 +83,7 @@ const AddRequest = () => {
         </div>
         <div className="form-content-horizontal">
           <div className="section-row">
+
             {/* Have Section */}
             <div className="course-section">
               <div className="form-group">
@@ -63,12 +95,11 @@ const AddRequest = () => {
                     className="form-select"
                   >
                     <option value="">Select a course</option>
-                    {courseOptions.map((course, index) => (
-                      <option key={index} value={course}>{course}</option>
+                    {coursesData.map((course, index) => (
+                      <option key={index} value={course.code}>{course.code}</option>
                     ))}
-
-
                   </select>
+
                   <span className="select-arrow">▼</span>
                 </div>
               </div>
@@ -78,14 +109,17 @@ const AddRequest = () => {
                 <div className="input-container">
                   <select
                     value={haveSection}
-                    onChange={(e) => setHaveSection(e.target.value)}
+                    onChange={(e) => handleHaveSectionChange(e.target.value)}
                     className="form-select"
                   >
-                    {sectionOptions.map((section, index) => (
-                      <option key={index} value={section}>{section}</option>
+                    <option value="">Select a section</option>
+                    {haveSectionOptions.map((section, index) => (
+                      <option key={index} value={section.section}>
+                        {section.section} ({section.days_times})
+                      </option>
                     ))}
-
                   </select>
+
                   <span className="select-arrow">▼</span>
                 </div>
               </div>
@@ -102,11 +136,11 @@ const AddRequest = () => {
                     className="form-select"
                   >
                     <option value="">Select a course</option>
-                      {courseOptions.map((course, index) => (
-                        <option key={index} value={course}>{course}</option>
-                      ))}                    
-                  
+                    {coursesData.map((course, index) => (
+                      <option key={index} value={course.code}>{course.code}</option>
+                    ))}
                   </select>
+
                   <span className="select-arrow">▼</span>
                 </div>
               </div>
@@ -116,14 +150,18 @@ const AddRequest = () => {
                 <div className="input-container">
                   <select
                     value={wantSection}
-                    onChange={(e) => setWantSection(e.target.value)}
+                    onChange={(e) => handleWantSectionChange(e.target.value)}
                     className="form-select"
                   >
                     <option value="">Select a section</option>
-                      {sectionOptions.map((section, index) => (
-                        <option key={index} value={section}>{section}</option>
-                      ))}
+                    {wantSectionOptions.map((section, index) => (
+                      <option key={index} value={section.section}>
+                        {section.section} ({section.days_times})
+                      </option>
+                    ))}
                   </select>
+
+
                   <span className="select-arrow">▼</span>
                 </div>
               </div>
@@ -132,6 +170,7 @@ const AddRequest = () => {
 
           {/* Submit Button */}
           <div className="submit-container">
+            {warning && <div className="warning-message">{warning}</div>}
             <button className="submit-btn" onClick={() => navigate('/dashboard')}>
               Submit
             </button>
