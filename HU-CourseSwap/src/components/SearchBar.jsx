@@ -1,7 +1,6 @@
 import React from 'react';
-// import './Search.css'; // make sure to create this file for styles
 
-const SearchBar = ({ placeholder = "Search courses, requests..." }) => {
+const SearchBar = ({ value, onChange, onSearch, placeholder = "Search want courses..." }) => {
   return (
     <div className="search-bar-wrapper">
       <div className="search-row">
@@ -9,8 +8,10 @@ const SearchBar = ({ placeholder = "Search courses, requests..." }) => {
           type="text"
           className="search-input"
           placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
         />
-        <button className="search-request-btn">Search</button>
+        <button className="search-request-btn" onClick={onSearch}>Search</button>
       </div>
     </div>
   );
