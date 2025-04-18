@@ -1,17 +1,18 @@
-// import React from 'react';
+// import React, { useEffect, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import ProfileCard from '../components/ProfileCard';
 // import Footer from '../components/ProfileFooter';
 // import '../styles/profile.css';
-// import { getAuth, onAuthStateChanged } from 'firebase/auth';
+// import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 // import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
-// function ProfilePage() {
+// const ProfilePage = () => {
 //   const [user, setUser] = useState(null);
 //   const [loading, setLoading] = useState(true);
 //   const auth = getAuth();
 //   const db = getFirestore();
-
+//   const navigate = useNavigate();
+  
 //   useEffect(() => {
 //     // Listen for authentication state changes
 //     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -22,21 +23,20 @@
 //           const userDoc = await getDoc(userDocRef);
           
 //           if (userDoc.exists()) {
-//             // Combine auth user info with additional profile data
+//             // Get data from Firestore with fullName instead of Name
+//             const userData = userDoc.data();
 //             setUser({
 //               uid: currentUser.uid,
-//               email: currentUser.email,
-//               ...userDoc.data()
-//             });
-//           } else {
-//             // If user document doesn't exist yet, just use auth data
-//             setUser({
-//               uid: currentUser.uid,
-//               email: currentUser.email,
-//               name: currentUser.displayName || 'User',
-//               phoneNumber: currentUser.phoneNumber || 'Not provided',
+//               Email: userData.Email || currentUser.email,
+//               fullName: userData.fullName, // Using fullName from your DB
+//               "Contact Number": userData["Contact Number"] || 'Not provided',
+//               studentId: userData.studentId || '',
 //               requests: 0
 //             });
+//           } else {
+//             console.error("User document does not exist in Firestore");
+//             // Redirect to complete profile if they haven't set up their profile
+//             navigate('/complete-profile');
 //           }
 //         } catch (error) {
 //           console.error("Error fetching user data:", error);
@@ -44,30 +44,39 @@
 //       } else {
 //         // User is signed out
 //         setUser(null);
+//         navigate('/login'); // Redirect to login if not authenticated
 //       }
 //       setLoading(false);
 //     });
 
 //     // Cleanup subscription on unmount
 //     return () => unsubscribe();
-//   }, [auth, db]);
+//   }, [auth, db, navigate]);
+
+//   const handleLogout = async () => {
+//     try {
+//       await signOut(auth);
+//       navigate('/login');
+//     } catch (error) {
+//       console.error("Error signing out:", error);
+//     }
+//   };
 
 //   if (loading) {
-//     return <div>Loading...</div>;
+//     return <div className="screen">Loading...</div>;
 //   }
 
 //   if (!user) {
-//     // Redirect to login or show a message
-//     return <div>Please log in to view your profile</div>;
+//     return <div className="screen">Please log in to view your profile</div>;
 //   }
-// const ProfilePage = () => {
-//   const navigate = useNavigate();
-  
-//   const userData = {
-//     name: 'Ali Ahmed',
-//     email: 'aaa12345@st.habib.edu.pk',
-//     phoneNumber: '0321-2345678',
-//     requests: 0,
+
+//   // Transform user data to match what ProfileCard expects
+//   const profileData = {
+//     name: user.fullName, // Use fullName for the name field in ProfileCard
+//     email: user.Email,
+//     phoneNumber: user["Contact Number"],
+//     studentId: user.studentId,
+//     requests: user.requests || 0
 //   };
 
 //   return (
@@ -79,12 +88,12 @@
 //         </div>
         
 //         <main className="profile-content">
-//           <ProfileCard userData={userData} />
+//           <ProfileCard userData={profileData} />
 //         </main>
         
 //         <Footer 
 //           onEditProfile={() => navigate('/edit-profile')}
-//           onLogout={() => navigate('/login')} 
+//           onLogout={handleLogout} 
 //         />
 //       </div>
 //     </div>
@@ -99,11 +108,12 @@ import ProfileCard from '../components/ProfileCard';
 import Footer from '../components/ProfileFooter';
 import '../styles/profile.css';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [requestCount, setRequestCount] = useState(0);
   const auth = getAuth();
   const db = getFirestore();
   const navigate = useNavigate();
@@ -112,42 +122,59 @@ const ProfilePage = () => {
     // Listen for authentication state changes
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        // User is signed in, fetch their profile data from Firestore
         try {
+          // Fetch user profile data from Firestore
           const userDocRef = doc(db, "users", currentUser.uid);
           const userDoc = await getDoc(userDocRef);
           
           if (userDoc.exists()) {
-            // Combine auth user info with additional profile data
+            // Get data from Firestore
             const userData = userDoc.data();
-            setUser({
+            
+            // Get the studentId to use for querying requests
+            const studentId = userData.studentId;
+            
+            // Create user object with profile data
+            const userProfile = {
               uid: currentUser.uid,
               Email: userData.Email || currentUser.email,
-              Name: userData.Name, 
+              fullName: userData.fullName,
               "Contact Number": userData["Contact Number"] || 'Not provided',
-              studentId: userData.studentId || '',
-              requests: 0
-            });
+              studentId: studentId || '',
+              requests: 0 // Default value, will be updated after fetching requests
+            };
+            
+            // Fetch user's requests based on their studentId
+            if (studentId) {
+              // Query the requests collection where userID matches the studentId
+              const requestsQuery = query(
+                collection(db, "requests"), 
+                where("userID", "==", studentId)
+              );
+              
+              const requestsSnapshot = await getDocs(requestsQuery);
+              const requestsCount = requestsSnapshot.size;
+              
+              // Update the user profile with the count of requests
+              userProfile.requests = requestsCount;
+              setRequestCount(requestsCount);
+            }
+            
+            setUser(userProfile);
           } else {
-            // If user document doesn't exist yet, just use auth data
-            setUser({
-              uid: currentUser.uid,
-              Email: currentUser.email,
-              Name: currentUser.displayName || 'User',
-              "Contact Number": 'Not provided',
-              studentId: '',
-              requests: 0
-            });
+            console.error("User document does not exist in Firestore");
+            navigate('/complete-profile');
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
+        } finally {
+          setLoading(false);
         }
       } else {
         // User is signed out
         setUser(null);
-        navigate('/login'); // Redirect to login if not authenticated
+        navigate('/login');
       }
-      setLoading(false);
     });
 
     // Cleanup subscription on unmount
@@ -172,12 +199,12 @@ const ProfilePage = () => {
   }
 
   // Transform user data to match what ProfileCard expects
-  const userData = {
-    name: user.Name,
+  const profileData = {
+    name: user.fullName,
     email: user.Email,
     phoneNumber: user["Contact Number"],
     studentId: user.studentId,
-    requests: user.requests || 0
+    requests: requestCount
   };
 
   return (
@@ -189,7 +216,7 @@ const ProfilePage = () => {
         </div>
         
         <main className="profile-content">
-          <ProfileCard userData={userData} />
+          <ProfileCard userData={profileData} />
         </main>
         
         <Footer 

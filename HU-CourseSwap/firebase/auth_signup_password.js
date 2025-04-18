@@ -5,10 +5,8 @@ const auth = getAuth();
 export const createUserWithEmailAndPasswordHandler = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed up
-      const user = userCredential.user;
-      console.log("User signed up:", user);
-      return user;
+      console.log("User signed up:", userCredential.user);
+      return userCredential; // Return the full object!
     })
     .catch((error) => {
       const errorCode = error.code;
