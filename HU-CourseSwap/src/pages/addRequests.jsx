@@ -1,39 +1,36 @@
-import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/addRequests.css';
-import { useEffect} from 'react';
-import { db } from '../../firebase/firebaseConfig'; // make sure this path is correct
-import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase/firebaseConfig';
+import { query, where, collection, getDocs, addDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { serverTimestamp } from 'firebase/firestore';
 
 const AddRequest = () => {
   const [warning, setWarning] = useState('');
-
-
   const [coursesData, setCoursesData] = useState([]);
   const [haveCourse, setHaveCourse] = useState('');
   const [haveSectionOptions, setHaveSectionOptions] = useState([]);
   const [haveSection, setHaveSection] = useState('');
-  
   const [wantCourse, setWantCourse] = useState('');
   const [wantSectionOptions, setWantSectionOptions] = useState([]);
-  const [wantSection, setWantSection] = useState([]);
+  const [wantSection, setWantSection] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "courses"));
+        const querySnapshot = await getDocs(collection(db, 'courses'));
         const data = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }));
         setCoursesData(data);
       } catch (error) {
-        console.error("Error fetching courses:", error);
+        console.error('Error fetching courses:', error);
       }
     };
-  
+
     fetchCourses();
   }, []);
 
@@ -41,16 +38,65 @@ const AddRequest = () => {
     const selected = coursesData.find(course => course.code === haveCourse);
     setHaveSectionOptions(selected?.sections || []);
   }, [haveCourse, coursesData]);
-  
+
   useEffect(() => {
     const selected = coursesData.find(course => course.code === wantCourse);
     setWantSectionOptions(selected?.sections || []);
   }, [wantCourse, coursesData]);
-  
-  
 
-  const handleSubmit = () => {
-    console.log('Form Submitted', { haveCourse, haveSection, wantCourse, wantSection });
+  const clean = (val) => val.replace(/['"]+/g, '').trim();
+
+  const handleSubmit = async () => {
+    if (!haveCourse || !haveSection || !wantCourse || !wantSection) {
+      alert('Please fill in all fields before submitting.');
+      return;
+    }
+
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      alert('You must be logged in to submit a request.');
+      return;
+    }
+
+    const email = currentUser.email;
+    const userId = email.substring(0, email.indexOf('@'));
+    const have = clean(haveCourse);
+    const want = clean(wantCourse);
+
+    try {
+      const existingQuery = query(
+        collection(db, 'swapRequests'),
+        where('userID', '==', userId),
+        where('haveCourse', '==', have),
+        where('wantCourse', '==', want)
+      );
+
+      const querySnapshot = await getDocs(existingQuery);
+      if (!querySnapshot.empty) {
+        alert('You have already submitted a similar swap request.');
+        return;
+      }
+
+      // Add new request
+      const newRequest = {
+        userID: userId,
+        haveCourse: have,
+        haveSection: clean(haveSection),
+        wantCourse: want,
+        wantSection: clean(wantSection),
+        status: 'open',
+        createdAt: serverTimestamp()
+      };
+
+      await addDoc(collection(db, 'swapRequests'), newRequest);
+      alert('Swap request submitted successfully!');
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Error submitting swap request:', error);
+      alert('There was an error submitting your request.');
+    }
   };
 
   const handleWantSectionChange = (value) => {
@@ -72,12 +118,10 @@ const AddRequest = () => {
       setHaveSection(value);
     }
   };
-  
 
   return (
     <div className="screen" id="course-schedule-screen">
       <div className="course-form-container">
-        {/* Back Button aligned top-right */}
         <div className="back-btn-container">
           <button className="back-btn" onClick={() => navigate('/dashboard')}>Back</button>
         </div>
@@ -99,7 +143,6 @@ const AddRequest = () => {
                       <option key={index} value={course.code}>{course.code}</option>
                     ))}
                   </select>
-
                   <span className="select-arrow">▼</span>
                 </div>
               </div>
@@ -119,7 +162,6 @@ const AddRequest = () => {
                       </option>
                     ))}
                   </select>
-
                   <span className="select-arrow">▼</span>
                 </div>
               </div>
@@ -140,7 +182,6 @@ const AddRequest = () => {
                       <option key={index} value={course.code}>{course.code}</option>
                     ))}
                   </select>
-
                   <span className="select-arrow">▼</span>
                 </div>
               </div>
@@ -160,8 +201,6 @@ const AddRequest = () => {
                       </option>
                     ))}
                   </select>
-
-
                   <span className="select-arrow">▼</span>
                 </div>
               </div>
@@ -171,7 +210,7 @@ const AddRequest = () => {
           {/* Submit Button */}
           <div className="submit-container">
             {warning && <div className="warning-message">{warning}</div>}
-            <button className="submit-btn" onClick={() => navigate('/dashboard')}>
+            <button className="submit-btn" onClick={handleSubmit}>
               Submit
             </button>
           </div>
