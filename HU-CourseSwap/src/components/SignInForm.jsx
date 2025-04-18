@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth} from "../../firebase/firebaseConfig";
 import { signInWithEmailAndPasswordHandler } from "../../firebase/auth_signin_password";
 import { saveFcmToken } from "../../firebase/saveFcmToken";
+import { db } from "../../firebase/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
+import { onAuthStateChanged } from 'firebase/auth';
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -27,19 +30,33 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const { email, password } = credentials;
-
+  
     try {
       const user = await signInWithEmailAndPasswordHandler(email, password);
+      const uid = user.uid;
+
+      const userData = {
+        email: user.email,
+        lastLogin: Date.now(),
+      };
+  
+      // Check if the user is authenticated and the token can be saved
+      await saveFcmToken(uid);
+  
+      await setDoc(doc(db, "users", uid), userData, { merge: true });
+  
       console.log("Login successful:", user);
-      await saveFcmToken(user); //asks the user to allow notifications
       navigate("/dashboard");
     } catch (error) {
       console.error("Login failed:", error.message);
       alert("Invalid email or password. Please try again.");
     }
   };
+  
+  
+  
+  
 
   const handleForgotPassword = () => {
     // Add your forgot password logic here
