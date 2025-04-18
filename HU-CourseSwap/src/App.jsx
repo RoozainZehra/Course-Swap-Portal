@@ -7,8 +7,10 @@ import RequestsPage from './pages/requests.jsx';
 import AddRequest from './pages/addRequests.jsx';  // Import AddRequest page
 import SignUp from './pages/Signup';
 import EditProfilePage from './pages/EditProfilePage'
+import NotificationsPage from './pages/Notifications.jsx';
 
 import './App.css';  // Assuming you have global styles
+// import './styles/dashboard.css'; // or wherever your CSS is
 
 const App = () => {
   return (
@@ -18,11 +20,12 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/requests" element={<RequestsPage />} />
+        <Route path="/my-requests" element={<RequestsPage />} />
         <Route path="/add-request" element={<AddRequest />} />
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />        
       </Routes>
     </Router>
   );

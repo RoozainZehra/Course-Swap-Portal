@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
-import '../styles/signIn.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import "../styles/signIn.css";
+import { Link, useNavigate } from "react-router-dom";
+import { auth} from "../../firebase/firebaseConfig";
+import { signInWithEmailAndPasswordHandler } from "../../firebase/auth_signin_password";
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCredentials(prev => ({
+    setCredentials((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -23,13 +26,23 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your authentication logic here
-    console.log('Login attempted with:', credentials);
+
+    const { email, password } = credentials;
+
+    signInWithEmailAndPasswordHandler(email, password)
+      .then((user) => {
+        console.log("Login successful:", user);
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.error("Login failed:", error.message);
+        alert("Invalid email or password. Please try again.");
+      });
   };
 
   const handleForgotPassword = () => {
     // Add your forgot password logic here
-    console.log('Forgot password clicked');
+    console.log("Forgot password clicked");
   };
 
   return (
@@ -44,11 +57,11 @@ const LoginPage = () => {
           <div className="wave-element"></div>
         </div>
       </div>
-      
+
       <div className="login-form-panel">
         <div className="login-form-container">
           <h2>Sign In</h2>
-          
+
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input
@@ -61,7 +74,7 @@ const LoginPage = () => {
                 required
               />
             </div>
-            
+
             <div className="form-group">
               <input
                 type="password"
@@ -73,7 +86,7 @@ const LoginPage = () => {
                 required
               />
             </div>
-            
+
             <div className="form-options">
               <div className="remember-me">
                 <input
@@ -85,12 +98,16 @@ const LoginPage = () => {
                 <label htmlFor="rememberMe">Remember me</label>
               </div>
             </div>
-            
-            <button type="submit" className="signin-btn">Sign In</button>
+
+            <button type="submit" className="signin-btn">
+              Sign In
+            </button>
           </form>
-          
+
           <div className="create-account">
-            <p>New here? <Link to="/signup">Create an Account</Link></p>
+            <p>
+              New here? <Link to="/signup">Create an Account</Link>
+            </p>
           </div>
         </div>
       </div>

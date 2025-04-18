@@ -1,9 +1,11 @@
 import React from 'react';
+import logoImage from '../assets/logo.png'; // adjust the path as needed
 
 const Logo = () => {
   return (
-    <div className="title">
-      <img src="/assets/logo.png" alt="Habib University Logo" style={{ width: '250px', height: '200px' }} />
+    <div className="logo-wrapper">
+      <img src={logoImage} alt="Logo" className="sidebar-logo" />
+      {/* <div className="logo-title">CourseSwap</div> */}
     </div>
   );
 };
