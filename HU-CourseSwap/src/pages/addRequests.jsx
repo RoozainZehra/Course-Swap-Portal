@@ -60,7 +60,8 @@ const AddRequest = () => {
       return;
     }
 
-    const userId = currentUser.uid;
+    const email = currentUser.email;
+    const userId = email.substring(0, email.indexOf('@'));
     const have = clean(haveCourse);
     const want = clean(wantCourse);
 
