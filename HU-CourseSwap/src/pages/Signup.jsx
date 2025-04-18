@@ -6,17 +6,16 @@ import { createUserWithEmailAndPasswordHandler } from "../../firebase/auth_signu
 import { validatePasswordHandler } from "../../firebase/auth_validate_password";
 import logo from '../assets/logo.png'; // Adjust path as needed
 import { validatePassword } from 'firebase/auth';
-
-
 const SignUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
-    email: '',
+    email: '', 
     password: '',
     confirmPassword: ''
   });
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -85,11 +84,13 @@ const SignUp = () => {
       if (isValid) {
         console.log("Form submitted:", formData);
         createUserWithEmailAndPasswordHandler(formData.email, formData.password)
-          .then((user) => {
-            console.log("Signup successful:", user);
-            alert("Account created successfully!");
+        .then((user) => {
+          console.log("Signup successful:", user);
+          setSuccessMessage("Account created successfully!");
+          setTimeout(() => {
             navigate("/");
-          })
+          }, 2000); // Give user 2 seconds to see the message
+        })        
           .catch((error) => {
             console.error("Signup failed:", error.message);
             alert("Signup failed. Please try again.");
@@ -113,7 +114,15 @@ const SignUp = () => {
       </div>
         <div className="auth-form">
           <h2>Create Account</h2>
-          
+          {successMessage && (
+          <div className="success-message">
+            {successMessage}
+          </div>
+        )}
+        <form onSubmit={handleSubmit}>
+          ...
+        </form>
+
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input
