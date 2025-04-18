@@ -3,6 +3,7 @@ import "../styles/signIn.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth} from "../../firebase/firebaseConfig";
 import { signInWithEmailAndPasswordHandler } from "../../firebase/auth_signin_password";
+import { saveFcmToken } from "../../firebase/saveFcmToken";
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -24,20 +25,20 @@ const LoginPage = () => {
     setRememberMe(!rememberMe);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { email, password } = credentials;
 
-    signInWithEmailAndPasswordHandler(email, password)
-      .then((user) => {
-        console.log("Login successful:", user);
-        navigate("/dashboard");
-      })
-      .catch((error) => {
-        console.error("Login failed:", error.message);
-        alert("Invalid email or password. Please try again.");
-      });
+    try {
+      const user = await signInWithEmailAndPasswordHandler(email, password);
+      console.log("Login successful:", user);
+      await saveFcmToken(user); //asks the user to allow notifications
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Login failed:", error.message);
+      alert("Invalid email or password. Please try again.");
+    }
   };
 
   const handleForgotPassword = () => {
