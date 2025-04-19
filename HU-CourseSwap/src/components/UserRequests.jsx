@@ -42,7 +42,7 @@ const UserRequests = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
     if (user) {
         const identifier = user.email.split('@')[0];
-        console.log('Current user identifier:', identifier); // ✅ Debug log
+        console.log('Current user identifier:', identifier); 
         fetchUserRequests(identifier);
     } else {
         setLoading(false);
