@@ -75,7 +75,7 @@ const WelcomeBar = () => {
       <div className="welcome-text">
         <p className="date">{today}</p>
         <h1>Welcome back, {loading ? '...' : firstName || 'Student'}!</h1>
-        <p className="subtitle">Always stay updated in your student portal</p>
+        <p className="subtitle">Stay on Top of Your Enrollments — Swap Smarter, Faster</p>
       </div>
       {/* <img src={characterImg} alt="Student" className="welcome-img" /> */}
     </div>
