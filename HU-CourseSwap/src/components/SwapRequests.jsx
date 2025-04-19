@@ -29,28 +29,44 @@ const SwapRequests = () => {
 
   const handleSearch = async () => {
     const trimmedTerm = searchTerm.trim().toUpperCase();
-
+  
     if (!trimmedTerm) {
       fetchAllRequests();
       return;
     }
-
+  
     try {
-      const searchQuery = query(
+      const wantQuery = query(
         collection(db, 'swapRequests'),
         where('wantCourse', '==', trimmedTerm)
       );
-      const snapshot = await getDocs(searchQuery);
-      const filtered = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setSwapRequests(filtered);
+      const haveQuery = query(
+        collection(db, 'swapRequests'),
+        where('haveCourse', '==', trimmedTerm)
+      );
+  
+      const [wantSnap, haveSnap] = await Promise.all([
+        getDocs(wantQuery),
+        getDocs(haveQuery)
+      ]);
+  
+      // Merge both results and remove duplicates if any
+      const docsMap = new Map();
+  
+      wantSnap.docs.forEach(doc => {
+        docsMap.set(doc.id, { id: doc.id, ...doc.data() });
+      });
+  
+      haveSnap.docs.forEach(doc => {
+        docsMap.set(doc.id, { id: doc.id, ...doc.data() });
+      });
+  
+      setSwapRequests(Array.from(docsMap.values()));
     } catch (error) {
       console.error("Error filtering swap requests:", error);
     }
   };
-
+  
   return (
     <div className="swap-requests">
       <div className="searchbar-wrapper">
