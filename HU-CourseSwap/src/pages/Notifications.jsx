@@ -14,6 +14,7 @@ import {
 import UserDetailsModal from "../components/UserDetailsModal";
 import "../styles/Notifications.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import NotificationItem from "../components/NotificationItem";
 
 const NotificationsPage = () => {
   const [notifications, setNotifications] = useState([]);
@@ -132,22 +133,17 @@ const NotificationsPage = () => {
       <div className="requests-main">
         <h1 className="section-title">Your Notifications</h1>
         <div className="requests-content">
-          {notifications.length === 0 ? (
+        {notifications.length === 0 ? (
             <div className="empty-state-wrapper">
               <EmptyState />
             </div>
           ) : (
             notifications.map((notification, index) => (
-              <div
+              <NotificationItem
                 key={index}
-                className="notification-item"
-                onClick={() => handleNotificationClick(notification)}
-              >
-                <p>
-                  {notification.userName} is interested in your swap request for{" "}
-                  {notification.haveCourse} → {notification.wantCourse}
-                </p>
-              </div>
+                notification={notification}
+                onClick={handleNotificationClick}
+              />
             ))
           )}
         </div>
