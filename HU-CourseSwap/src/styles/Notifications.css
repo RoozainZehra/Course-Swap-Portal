@@ -9,18 +9,16 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  /* margin-right: 2rem; */
 }
 
 .requests-content {
-  flex: 1;
-  padding: 3rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 700px;
-  /* margin-left: 2rem; */
-  justify-content: center;
+  align-items: stretch; /* Ensure full-width notification items */
+  justify-content: flex-start; /* Align from top */
+  padding: 16px;
+  height: 100%;
+  overflow-y: auto; /* Enable scroll if too many notifications */
 }
 
 .section-title {
