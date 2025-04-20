@@ -178,9 +178,10 @@ const SwapRequests = () => {
                 {clean(request.haveCourse)} ({clean(request.haveSection)}) → {clean(request.wantCourse)} ({clean(request.wantSection)})
               </h4>
               <p>Status: {request.status}</p>
-              <button className="swap-card-btn" onClick={() => handleInterested(request.id)} disabled={interestedRequestIds.has(request.id)} >
+              <button className={`swap-card-btn ${interestedRequestIds.has(request.id) ? 'interested-disabled' : ''}`} onClick={() => handleInterested(request.id)} disabled={interestedRequestIds.has(request.id)} >
                 {interestedRequestIds.has(request.id) ? 'Interest Sent' : 'Interested'}
               </button>
+
             </div>
           ))
         )}
