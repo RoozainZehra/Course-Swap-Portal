@@ -1,13 +1,17 @@
+
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs, query, where, addDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, query, where, addDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
 import { getAuth } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 import EmptyState from './EmptyState';
 import SearchBar from './SearchBar';
 
 const SwapRequests = () => {
   const [swapRequests, setSwapRequests] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  // Initialize navigate
+  const navigate = useNavigate();
 
   const clean = (str) => str?.replace(/^['"]+|['"]+$/g, '');
 
@@ -70,6 +74,7 @@ const SwapRequests = () => {
 
   const handleInterested = async (requestId) => {
     try {
+      console.log("handleInterested called with requestId:", requestId);
       const auth = getAuth();
       const user = auth.currentUser;
   
@@ -78,23 +83,48 @@ const SwapRequests = () => {
         return;
       }
   
+      console.log("Current user email:", user.email);
       const identifier = user.email.split('@')[0]; // Extracts "aa01010" from email
-  
-      const interestedUserRef = collection(db, 'swapRequests', requestId, 'interestedUsers');
-  
-      await addDoc(interestedUserRef, {
-        identifier: identifier,
-        timestamp: new Date()
-      });
-  
-      alert("You've been marked as interested!");
+      
+      // Verify the swap request exists first
+      try {
+        const swapRequestRef = doc(db, 'swapRequests', requestId);
+        const swapRequestDoc = await getDoc(swapRequestRef);
+        
+        if (!swapRequestDoc.exists()) {
+          console.error("Swap request doesn't exist:", requestId);
+          alert("This swap request no longer exists.");
+          return;
+        }
+        
+        console.log("Swap request found, proceeding to add interested user");
+        
+        // Create the reference to the interestedUsers subcollection
+        const interestedUserRef = collection(db, 'swapRequests', requestId, 'interestedUsers');
+        
+        // Add the document to the subcollection
+        const docRef = await addDoc(interestedUserRef, {
+          identifier: identifier,
+          timestamp: new Date()
+        });
+        
+        console.log("Successfully added interest document with ID:", docRef.id);
+      
+        // Navigate to the SwapUserProfilePage with the requestId
+        navigate(`/swap-user-profile/${requestId}`);
+        
+        alert("You've been marked as interested!");
+      } catch (innerError) {
+        console.error("Error when checking swap request:", innerError);
+        throw innerError; // Re-throw to be caught by outer catch
+      }
     } catch (error) {
       console.error("Error saving interest:", error);
+      console.error("Error code:", error.code);
+      console.error("Error message:", error.message);
       alert("Failed to mark interest. Try again.");
     }
   };
-  
-  
   
   return (
     <div className="swap-requests">

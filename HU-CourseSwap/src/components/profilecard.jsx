@@ -2,11 +2,11 @@ import React from 'react';
 import ProfileImage from './ProfileAvatar';
 import ProfileDetails from './ProfileInfo';
 
-const ProfileCard = ({ userData }) => {
+const ProfileCard = ({ userData, showRequests = true  }) => {
   return (
     <div className="profile-card">
       <ProfileImage src={userData.profileImage} />
-      <ProfileDetails userData={userData} />
+      <ProfileDetails userData={userData} showRequests={showRequests} />
     </div>
   );
 };
