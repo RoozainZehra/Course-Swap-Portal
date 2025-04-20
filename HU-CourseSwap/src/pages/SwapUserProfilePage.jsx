@@ -106,6 +106,7 @@ const SwapUserProfilePage = () => {
   return (
     <div className="screen">
       <div className="profile-page">
+      <h1 className="page-title" style={{ color: 'white' }}>Swap User's Profile Page</h1>
         <div className="navigation-buttons">
           <button onClick={() => navigate('/dashboard')}>Home</button>
         </div>

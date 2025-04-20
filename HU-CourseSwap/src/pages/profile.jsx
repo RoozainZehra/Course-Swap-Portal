@@ -37,7 +37,7 @@ const ProfilePage = () => {
               requests: 0 // Default value, will be updated after fetching requests
             };
             
-            // NEW: Fetch requests from user's subcollection
+            // Fetch requests from user's subcollection
             const requestsCollectionRef = collection(userDocRef, "requests");
             const requestsSnapshot = await getDocs(requestsCollectionRef);
             const count = requestsSnapshot.size;
