@@ -10,10 +10,37 @@ import SearchBar from './SearchBar';
 const SwapRequests = () => {
   const [swapRequests, setSwapRequests] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [interestedRequestIds, setInterestedRequestIds] = useState(new Set());
   // Initialize navigate
   const navigate = useNavigate();
 
   const clean = (str) => str?.replace(/^['"]+|['"]+$/g, '');
+
+  const fetchUserInterestStatus = async (requests) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (!user || !user.email) return;
+  
+    const identifier = user.email.split('@')[0];
+    const interestedIds = new Set();
+  
+    await Promise.all(
+      requests.map(async (req) => {
+        const interestedRef = collection(db, 'swapRequests', req.id, 'interestedUsers');
+        const docsSnap = await getDocs(interestedRef);
+  
+        docsSnap.forEach(doc => {
+          const data = doc.data();
+          if (data.identifier === identifier) {
+            interestedIds.add(req.id);
+          }
+        });
+      })
+    );
+  
+    setInterestedRequestIds(interestedIds);
+  };
+  
 
   const fetchAllRequests = async () => {
     try {
@@ -23,6 +50,7 @@ const SwapRequests = () => {
         ...doc.data()
       }));
       setSwapRequests(requests);
+      await fetchUserInterestStatus(requests);
     } catch (error) {
       console.error("Error fetching swap requests:", error);
     }
@@ -109,6 +137,8 @@ const SwapRequests = () => {
         });
         
         console.log("Successfully added interest document with ID:", docRef.id);
+
+        setInterestedRequestIds((prev) => new Set(prev).add(requestId));
       
         // Navigate to the SwapUserProfilePage with the requestId
         navigate(`/swap-user-profile/${requestId}`);
@@ -148,8 +178,8 @@ const SwapRequests = () => {
                 {clean(request.haveCourse)} ({clean(request.haveSection)}) → {clean(request.wantCourse)} ({clean(request.wantSection)})
               </h4>
               <p>Status: {request.status}</p>
-              <button className="swap-card-btn" onClick={() => handleInterested(request.id)}>
-                Interested
+              <button className="swap-card-btn" onClick={() => handleInterested(request.id)} disabled={interestedRequestIds.has(request.id)} >
+                {interestedRequestIds.has(request.id) ? 'Interest Sent' : 'Interested'}
               </button>
             </div>
           ))
