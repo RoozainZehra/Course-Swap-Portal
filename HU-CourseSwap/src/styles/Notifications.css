@@ -1,94 +1,125 @@
 .requests-layout {
-display: flex;
-min-height: 100vh;
-background-color: #e8d6fb; /* light dashboard-like background */
+  display: flex;
+  min-height: 100vh;
+  background-color: #e8d6fb; /* light dashboard-like background */
 }
 
 .requests-main {
-flex: 1;
-display: flex;
-flex-direction: column;
-overflow: auto;
-/* margin-right: 2rem; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  /* margin-right: 2rem; */
 }
 
 .requests-content {
-flex: 1;
-padding: 3rem;
-display: flex;
-flex-direction: column;
-align-items: center;
-width: 700px;
-/* margin-left: 2rem; */
-justify-content: center; 
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  /* margin-left: 2rem; */
+  justify-content: center;
 }
 
 .section-title {
-margin: 2rem 0;
-text-align: center;
-font-size: 1.8rem;
-color: #4a148c;
-font-weight: bold;
+  margin: 2rem 0;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #4a148c;
+  font-weight: bold;
 }
 
 /* Empty state wrapper to ensure vertical center if nothing is shown */
 .empty-state-wrapper {
-display: flex;
-justify-content: center;
-align-items: center;
-flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 }
 
 /* Swap Cards */
 .swap-card-container {
-display: flex;
-flex-wrap: wrap;
-gap: 1rem;
-justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
 }
 
 .swap-card {
-background: #f3e8ff;
-padding: 1.2rem;
-border-radius: 12px;
-width: 250px;
-height: 200px;
-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-transition: transform 0.2s ease, border 0.2s ease;
-border: 2px solid transparent;
-cursor: pointer;
-display: flex;
-flex-direction: column;
-justify-content: center;
-text-align: center;
+  background: #f3e8ff;
+  padding: 1.2rem;
+  border-radius: 12px;
+  width: 250px;
+  height: 200px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, border 0.2s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .swap-card:hover {
-transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .swap-card h4 {
-margin-bottom: 0.5rem;
-color: #4b0082;
+  margin-bottom: 0.5rem;
+  color: #4b0082;
 }
 
 .swap-card p {
-color: #444;
+  color: #444;
 }
 
 .swap-card-btn1 {
-margin-top: 1rem;
-align-self: center;
-padding: 8px 16px;
-border: none;
-border-radius: 20px;
-background-color: #5837b4;
-color: white;
-font-weight: bold;
-cursor: pointer;
-transition: background 0.3s ease;
+  margin-top: 1rem;
+  align-self: center;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #5837b4;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .swap-card-btn1:hover {
-background-color: #fa0a0a;
+  background-color: #fa0a0a;
+}
+
+.notification-item {
+  background-color: #f8f9fa;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.notification-item:hover {
+  background-color: #f1f1f1;
+}
+
+.requests-main {
+  padding: 20px;
+}
+
+.requests-content {
+  margin-top: 20px;
+}
+
+.empty-state-wrapper {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
 }

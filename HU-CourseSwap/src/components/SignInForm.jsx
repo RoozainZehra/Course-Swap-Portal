@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/signIn.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth} from "../../firebase/firebaseConfig";
 import { signInWithEmailAndPasswordHandler } from "../../firebase/auth_signin_password";
+import { saveFcmToken } from "../../firebase/saveFcmToken";
+import { db } from "../../firebase/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
+import { onAuthStateChanged } from 'firebase/auth';
+import { getMessaging, getToken } from "firebase/messaging";
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -11,6 +16,21 @@ const LoginPage = () => {
   });
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   // Pushwoosh script and subscription logic will be handled after login
+  //   const loadPushwooshScript = () => {
+  //     const script = document.createElement('script');
+  //     script.src = 'https://cdn.pushwoosh.com/webpush/v3/pushwoosh-web-notifications.js';
+  //     script.async = true;
+  //     script.onload = () => {
+  //       console.log('Pushwoosh SDK script loaded');
+  //     };
+  //     document.body.appendChild(script);
+  //   };
+
+  //   loadPushwooshScript();
+  // }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,22 +44,60 @@ const LoginPage = () => {
     setRememberMe(!rememberMe);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     const { email, password } = credentials;
-
-    signInWithEmailAndPasswordHandler(email, password)
-      .then((user) => {
-        console.log("Login successful:", user);
-        navigate("/dashboard");
-      })
-      .catch((error) => {
-        console.error("Login failed:", error.message);
-        alert("Invalid email or password. Please try again.");
-      });
+    
+    try {
+      const user = await signInWithEmailAndPasswordHandler(email, password);
+      const uid = user.uid;
+  
+      // Fetch the ID token for the signed-in user
+      // const idToken = await user.getIdToken();
+      // console.log("ID Token:", idToken);  // This is required for FCM
+    
+      // // Initialize FCM after the user is authenticated
+      // const messaging = getMessaging();
+      // let fcmToken = null;  // Declare it outside the block
+      
+      // if ('serviceWorker' in navigator) {
+      //   navigator.serviceWorker.register('/firebase-messaging-sw.js')
+      //     .then((registration) => {
+      //       // Proceed with FCM token request after registration
+      //       getToken(messaging, {
+      //         vapidKey: "YOUR_VAPID_KEY",
+      //         serviceWorkerRegistration: registration,  // Make sure this is valid
+      //       }).then((fcmToken) => {
+      //         console.log("FCM Token:", fcmToken);
+      //         if (fcmToken) {
+      //           saveFcmToken(uid, fcmToken);  // Save token to Firestore
+      //         }
+      //       }).catch((error) => {
+      //         console.error("Error retrieving FCM token:", error);
+      //       });
+      //     })
+      //     .catch((error) => {
+      //       console.error("Service Worker registration failed:", error);
+      //     });
+      // }      
+      
+      // // If FCM token is successfully retrieved, save it to Firestore
+      // if (fcmToken) {
+      //   await saveFcmToken(uid, fcmToken);  // Assuming this function saves the token
+      // }
+    
+      // Save user data to Firestore
+      const userData = { email: user.email, lastLogin: Date.now() };
+      await setDoc(doc(db, "users", uid), userData, { merge: true });
+    
+      console.log("Login successful:", user);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Login failed:", error.message);
+      alert("Invalid email or password. Please try again.");
+    }
   };
-
+  
   const handleForgotPassword = () => {
     // Add your forgot password logic here
     console.log("Forgot password clicked");
