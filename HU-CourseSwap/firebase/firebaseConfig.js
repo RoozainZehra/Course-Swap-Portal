@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getMessaging } from "firebase/messaging";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -18,11 +19,22 @@ const firebaseConfig = {
   storageBucket: "hucourseswap.firebasestorage.app",
   messagingSenderId: "1066163183237",
   appId: "1:1066163183237:web:d2141f61064ed13ad853ec",
-  measurementId: "G-SYNZ3BJBBM"
+  measurementId: "G-SYNZ3BJBBM",
 };
 
-const app = initializeApp(firebaseConfig);
+navigator.serviceWorker
+  .register("/firebase-messaging-sw.js")
+  .then((registration) => {
+    console.log("Service Worker registered", registration);
+  })
+  .catch((error) => {
+    console.error("Service Worker registration failed:", error);
+  });
 
-export const db = getFirestore(app);
-export const auth = getAuth(app);
-export default app;
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const messaging = getMessaging(app);
+
+export default firebaseConfig;
+export { app, auth, db, messaging };
