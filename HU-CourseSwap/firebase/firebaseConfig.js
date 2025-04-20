@@ -19,12 +19,22 @@ const firebaseConfig = {
   storageBucket: "hucourseswap.firebasestorage.app",
   messagingSenderId: "1066163183237",
   appId: "1:1066163183237:web:d2141f61064ed13ad853ec",
-  measurementId: "G-SYNZ3BJBBM"
+  measurementId: "G-SYNZ3BJBBM",
 };
+
+navigator.serviceWorker
+  .register("/firebase-messaging-sw.js")
+  .then((registration) => {
+    console.log("Service Worker registered", registration);
+  })
+  .catch((error) => {
+    console.error("Service Worker registration failed:", error);
+  });
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const messaging = getMessaging(app);
 
-export { app, auth, db, messaging }; 
+export default firebaseConfig;
+export { app, auth, db, messaging };

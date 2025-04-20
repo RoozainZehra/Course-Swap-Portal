@@ -2,39 +2,21 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-// import { register } from '../public/firebase-messaging-sw.js'; // Import register function
 import { getMessaging, getToken } from 'firebase/messaging';
-import { messaging } from '../firebase/firebaseConfig.js'; // assuming messaging is exported
+import { initializeApp } from "firebase/app";
+import firebaseConfig from "../firebase/firebaseConfig.js";
 
-// register();
-const VAPID_KEY = "BLK8L-V9K8z-Xs8yeYCPd5SY1Lw12ycV9ksGRbeB_7V-GRD6Sj4y9fcB8M7aG4VIemD9WefcDrXEZ4VE-YiSbb8";
+// ✅ Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('/firebase-messaging-sw.js') // Must be from public root
-    .then((registration) => {
-      console.log('Service Worker registered with scope:', registration.scope);
-
-      getToken(messaging, {
-        vapidKey: VAPID_KEY,
-        serviceWorkerRegistration: registration,
-      })
-        .then((currentToken) => {
-          if (currentToken) {
-            console.log('FCM Token:', currentToken);
-            // Save to Firestore
-          } else {
-            console.log('No FCM token available.');
-          }
-        })
-        .catch((err) => {
-          console.error('Error getting FCM token:', err);
-        });
-    })
-    .catch((error) => {
-      console.error('Service Worker registration failed:', error);
-    });
-}
+// ✅ Register service worker (but don’t call getToken here!)
+navigator.serviceWorker.register("/firebase-messaging-sw.js")
+  .then((registration) => {
+    console.log("Service Worker registered:", registration);
+    // Do NOT call getToken here
+  }).catch((err) => {
+    console.error("Service Worker registration failed:", err);
+  });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
