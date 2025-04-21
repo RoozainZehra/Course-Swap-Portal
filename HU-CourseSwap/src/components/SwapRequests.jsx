@@ -1,22 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { collection, getDocs, query, where, addDoc, doc } from 'firebase/firestore';
-import { db } from '../../firebase/firebaseConfig';
-import { getAuth } from 'firebase/auth';
-import EmptyState from './EmptyState';
-import SearchBar from './SearchBar';
+import React, { useEffect, useState } from "react";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  addDoc,
+  doc,
+} from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
+import { getAuth } from "firebase/auth";
+import EmptyState from "./EmptyState";
+import SearchBar from "./SearchBar";
+import Swal from "sweetalert2";
 
 const SwapRequests = () => {
   const [swapRequests, setSwapRequests] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const clean = (str) => str?.replace(/^['"]+|['"]+$/g, '');
+  const clean = (str) => str?.replace(/^['"]+|['"]+$/g, "");
 
   const fetchAllRequests = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'swapRequests'));
-      const requests = querySnapshot.docs.map(doc => ({
+      const querySnapshot = await getDocs(collection(db, "swapRequests"));
+      const requests = querySnapshot.docs.map((doc) => ({
         id: doc.id,
-        ...doc.data()
+        ...doc.data(),
       }));
       setSwapRequests(requests);
     } catch (error) {
@@ -30,38 +38,38 @@ const SwapRequests = () => {
 
   const handleSearch = async () => {
     const trimmedTerm = searchTerm.trim().toUpperCase();
-  
+
     if (!trimmedTerm) {
       fetchAllRequests();
       return;
     }
-  
+
     try {
       const wantQuery = query(
-        collection(db, 'swapRequests'),
-        where('wantCourse', '==', trimmedTerm)
+        collection(db, "swapRequests"),
+        where("wantCourse", "==", trimmedTerm)
       );
       const haveQuery = query(
-        collection(db, 'swapRequests'),
-        where('haveCourse', '==', trimmedTerm)
+        collection(db, "swapRequests"),
+        where("haveCourse", "==", trimmedTerm)
       );
-  
+
       const [wantSnap, haveSnap] = await Promise.all([
         getDocs(wantQuery),
-        getDocs(haveQuery)
+        getDocs(haveQuery),
       ]);
-  
+
       // Merge both results and remove duplicates if any
       const docsMap = new Map();
-  
-      wantSnap.docs.forEach(doc => {
+
+      wantSnap.docs.forEach((doc) => {
         docsMap.set(doc.id, { id: doc.id, ...doc.data() });
       });
-  
-      haveSnap.docs.forEach(doc => {
+
+      haveSnap.docs.forEach((doc) => {
         docsMap.set(doc.id, { id: doc.id, ...doc.data() });
       });
-  
+
       setSwapRequests(Array.from(docsMap.values()));
     } catch (error) {
       console.error("Error filtering swap requests:", error);
@@ -72,30 +80,43 @@ const SwapRequests = () => {
     try {
       const auth = getAuth();
       const user = auth.currentUser;
-  
+
       if (!user || !user.email) {
-        alert("Please log in to express interest.");
+        // alert("Please log in to express interest.");
+        Swal.fire({
+          title: "Invalid Action",
+          text: "Please log in to express interest",
+          icon: "error",
+        });
         return;
       }
-  
-      const identifier = user.email.split('@')[0]; // Extracts "aa01010" from email
-  
-      const interestedUserRef = collection(db, 'swapRequests', requestId, 'interestedUsers');
-  
+
+      const identifier = user.email.split("@")[0]; // Extracts "aa01010" from email
+
+      const interestedUserRef = collection(
+        db,
+        "swapRequests",
+        requestId,
+        "interestedUsers"
+      );
+
       await addDoc(interestedUserRef, {
         identifier: identifier,
-        timestamp: new Date()
+        timestamp: new Date(),
       });
-  
-      alert("You've been marked as interested!");
+
+      Swal.fire({
+        title: "Success!",
+        text: "You've been marked as interested!",
+        icon: "success",
+      });
+      // alert("You've been marked as interested!");
     } catch (error) {
       console.error("Error saving interest:", error);
       alert("Failed to mark interest. Try again.");
     }
   };
-  
-  
-  
+
   return (
     <div className="swap-requests">
       <div className="searchbar-wrapper">
@@ -115,10 +136,14 @@ const SwapRequests = () => {
           swapRequests.map((request) => (
             <div key={request.id} className="swap-card">
               <h4>
-                {clean(request.haveCourse)} ({clean(request.haveSection)}) → {clean(request.wantCourse)} ({clean(request.wantSection)})
+                {clean(request.haveCourse)} ({clean(request.haveSection)}) →{" "}
+                {clean(request.wantCourse)} ({clean(request.wantSection)})
               </h4>
               <p>Status: {request.status}</p>
-              <button className="swap-card-btn" onClick={() => handleInterested(request.id)}>
+              <button
+                className="swap-card-btn"
+                onClick={() => handleInterested(request.id)}
+              >
                 Interested
               </button>
             </div>
