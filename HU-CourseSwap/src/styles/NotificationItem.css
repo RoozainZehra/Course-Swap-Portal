@@ -1,24 +1,27 @@
 .notification-item {
-    background-color: #f9f9fb;
-    border: 1px solid #ddd;
-    border-left: 4px solid #4f46e5; /* Indigo highlight */
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-  }
-  
-  .notification-item:hover {
-    background-color: #eef0ff;
-    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.1);
-  }
-  
-  .notification-item p {
-    margin: 0;
-    font-size: 15px;
-    color: #333;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-  
+  background-color: #f9f9fb;
+  border: 1px solid #ddd;
+  border-left: 4px solid #4f46e5; /* Default indigo highlight */
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.notification-item.match {
+  border-left: 4px solid #574374; /* Green highlight for matches */
+}
+
+.notification-item:hover {
+  background-color: #eef0ff;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.1);
+}
+
+.notification-item p {
+  margin: 0;
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+  line-height: 1.5;
+}

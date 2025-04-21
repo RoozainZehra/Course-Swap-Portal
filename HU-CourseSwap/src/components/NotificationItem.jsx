@@ -1,14 +1,33 @@
-// components/NotificationItem.jsx
-
 import React from "react";
-import "../styles/NotificationItem.css"; // optional styling
+import "../styles/NotificationItem.css";
 
 const NotificationItem = ({ notification, onClick }) => {
+  const notificationClass =
+    notification.type === "match" ? "notification-item match" : "notification-item";
+
   return (
-    <div className="notification-item" onClick={() => onClick(notification)}>
+    <div className={notificationClass} onClick={() => onClick(notification)}>
       <p>
-        {notification.userName} is interested in your swap request for{" "}
-        {notification.haveCourse} → {notification.wantCourse}
+        {notification.type === "match" ? (
+          <>
+            🔁 Suggested Match: <strong>{notification.userName}</strong> has a
+            compatible request:{" "}
+            <span>
+              {notification.haveCourse} → {notification.wantCourse}
+            </span>
+            {notification.matchScore && (
+              <span> (Score: {notification.matchScore})</span>
+            )}
+          </>
+        ) : (
+          <>
+            👤 <strong>{notification.userName}</strong> is interested in your
+            swap request:{" "}
+            <span>
+              {notification.haveCourse} → {notification.wantCourse}
+            </span>
+          </>
+        )}
       </p>
     </div>
   );
