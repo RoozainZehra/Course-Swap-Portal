@@ -8,9 +8,12 @@ import logo from "../assets/logo.png";
 import { validatePassword } from "firebase/auth";
 import { db } from "../../firebase/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import { useSnackbar } from "notistack";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar(); // Access enqueueSnackbar from the hook
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -18,7 +21,7 @@ const SignUp = () => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -108,13 +111,19 @@ const SignUp = () => {
           }
 
           console.log("Signup and Firestore user creation successful:", user);
-          alert("Account created successfully!");
+          // alert("Account created successfully!");
+          enqueueSnackbar("Account created successfully!", {
+            variant: "success",
+          });
           navigate("/");
         })
 
         .catch((error) => {
           console.error("Signup failed:", error.message);
-          alert("Signup failed. Please try again.");
+          // alert("Signup failed. Please try again.");
+          enqueueSnackbar("Signup failed. Please try again.", {
+            variant: "error",
+          });
         });
     } else {
       console.log("Form validation failed:", errors);

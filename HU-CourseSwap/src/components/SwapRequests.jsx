@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query, where, addDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
@@ -6,14 +5,15 @@ import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import EmptyState from './EmptyState';
 import SearchBar from './SearchBar';
+import Swal from 'sweetalert2'
+import { useSnackbar } from 'notistack';
 
 const SwapRequests = () => {
   const [swapRequests, setSwapRequests] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [interestedRequestIds, setInterestedRequestIds] = useState(new Set());
-  // Initialize navigate
   const navigate = useNavigate();
-
+  const { enqueueSnackbar } = useSnackbar(); // Access enqueueSnackbar from the hook
   const clean = (str) => str?.replace(/^['"]+|['"]+$/g, '');
 
   const fetchUserInterestStatus = async (requests) => {
@@ -107,7 +107,13 @@ const SwapRequests = () => {
       const user = auth.currentUser;
   
       if (!user || !user.email) {
-        alert("Please log in to express interest.");
+        // alert("Please log in to express interest.");
+        Swal.fire({
+          title: 'Error!',
+          text: 'Please log in to express interest.',
+          icon: 'error',
+          // confirmButtonText: 'Cool'
+        })
         return;
       }
   
@@ -121,7 +127,13 @@ const SwapRequests = () => {
         
         if (!swapRequestDoc.exists()) {
           console.error("Swap request doesn't exist:", requestId);
-          alert("This swap request no longer exists.");
+          Swal.fire({
+            title: 'Error!',
+            text: 'This swap request no longer exists.',
+            icon: 'error',
+            // confirmButtonText: 'Cool'
+          })
+          // alert("This swap request no longer exists.");
           return;
         }
         
@@ -142,8 +154,12 @@ const SwapRequests = () => {
       
         // Navigate to the SwapUserProfilePage with the requestId
         navigate(`/swap-user-profile/${requestId}`);
-        
-        alert("You've been marked as interested!");
+        Swal.fire({
+          title: "Success!",
+          text: "You've been marked as interested!",
+          icon: "success"
+        });
+        // alert("You've been marked as interested!");
       } catch (innerError) {
         console.error("Error when checking swap request:", innerError);
         throw innerError; // Re-throw to be caught by outer catch
@@ -152,7 +168,9 @@ const SwapRequests = () => {
       console.error("Error saving interest:", error);
       console.error("Error code:", error.code);
       console.error("Error message:", error.message);
-      alert("Failed to mark interest. Try again.");
+      // alert("Failed to mark interest. Try again.");
+      enqueueSnackbar('Failed to mark interest. Try again.', { variant: 'error' });
+
     }
   };
   

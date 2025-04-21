@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../styles/signIn.css";
 import { Link, useNavigate } from "react-router-dom";
-import { auth} from "../../firebase/firebaseConfig";
+import { auth } from "../../firebase/firebaseConfig";
 import { signInWithEmailAndPasswordHandler } from "../../firebase/auth_signin_password";
 import { saveFcmToken } from "../../firebase/saveFcmToken";
 import { db } from "../../firebase/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from "firebase/auth";
 import { getMessaging, getToken } from "firebase/messaging";
+import { useSnackbar } from "notistack";
 
 const LoginPage = () => {
+  const { enqueueSnackbar } = useSnackbar(); // Access enqueueSnackbar from the hook
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -47,19 +49,19 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = credentials;
-    
+
     try {
       const user = await signInWithEmailAndPasswordHandler(email, password);
       const uid = user.uid;
-  
+
       // Fetch the ID token for the signed-in user
       // const idToken = await user.getIdToken();
       // console.log("ID Token:", idToken);  // This is required for FCM
-    
+
       // // Initialize FCM after the user is authenticated
       // const messaging = getMessaging();
       // let fcmToken = null;  // Declare it outside the block
-      
+
       // if ('serviceWorker' in navigator) {
       //   navigator.serviceWorker.register('/firebase-messaging-sw.js')
       //     .then((registration) => {
@@ -79,25 +81,31 @@ const LoginPage = () => {
       //     .catch((error) => {
       //       console.error("Service Worker registration failed:", error);
       //     });
-      // }      
-      
+      // }
+
       // // If FCM token is successfully retrieved, save it to Firestore
       // if (fcmToken) {
       //   await saveFcmToken(uid, fcmToken);  // Assuming this function saves the token
       // }
-    
+
       // Save user data to Firestore
       const userData = { email: user.email, lastLogin: Date.now() };
       await setDoc(doc(db, "users", uid), userData, { merge: true });
-    
+
       console.log("Login successful:", user);
+      enqueueSnackbar("Sign In successful!", {
+        variant: "success",
+      });
       navigate("/dashboard");
     } catch (error) {
       console.error("Login failed:", error.message);
-      alert("Invalid email or password. Please try again.");
+      // alert("Invalid email or password. Please try again.");
+      enqueueSnackbar("Invalid email or password. Please try again.", {
+        variant: "error",
+      });
     }
   };
-  
+
   const handleForgotPassword = () => {
     // Add your forgot password logic here
     console.log("Forgot password clicked");
