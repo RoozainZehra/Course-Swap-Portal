@@ -8,16 +8,20 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  max-width: calc(100% - 250px); /* Adjust based on your sidebar width */
+  margin-left: 250px; /* Match the sidebar width */
 }
 
 .requests-content {
-  flex: 1;
-  padding: 3rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch; /* Ensure full-width notification items */
+  justify-content: flex-start; /* Align from top */
+  padding: 16px;
+  height: 100%;
+  overflow-y: auto; /* Enable scroll if too many notifications */
 }
-
 .section-title {
   margin-top: 2rem;
   text-align: center;
