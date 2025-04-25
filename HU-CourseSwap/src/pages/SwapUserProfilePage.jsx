@@ -75,7 +75,6 @@ const SwapUserProfilePage = () => {
               email: 'Not provided',
               phoneNumber: 'Not provided',
               studentId: 'Not available',
-              // requests: null
             };
             
             setUserData(profileData);

@@ -1,6 +1,12 @@
+import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import firebaseConfig from "./firebaseConfig"; // Adjust the path if needed
 
-const auth = getAuth();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Get the Auth instance
+const auth = getAuth(app);
 
 export const signInWithEmailAndPasswordHandler = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password)

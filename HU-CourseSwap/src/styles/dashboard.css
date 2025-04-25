@@ -14,7 +14,6 @@ body {
 /* Layout wrapper */
 .dashboard-wrapper {
   display: flex;
-  /* min-height: 100vh; */
 }
 
 /* Sidebar styles */
@@ -76,7 +75,7 @@ body {
 
 /* Content area (right of sidebar) */
 .dashboard-content {
-  margin-left: 280px;  /* slight reduction for better alignment */
+  margin-left: 280px; 
   padding: 2rem 2rem;
   flex: 1;
 }
@@ -87,7 +86,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
-  max-width: 750px; /* constrain width */
+  max-width: 750px; 
   width: 100%;
 }
 
@@ -123,7 +122,6 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
-  /* white-space: nowrap; */
 }
 
 .search-request-btn:hover {
@@ -164,8 +162,6 @@ body {
   max-width: 775px; /* same as search bar container */
   height: 150px;
   width: 100%;
-  /* position: fixed; */
-  /* margin-top: rem !important;  */
   margin-bottom: 2rem;
 }
 
@@ -194,7 +190,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  justify-content: center; /* This will now work */
+  justify-content: center;
   padding: 1rem 0;
 }
 

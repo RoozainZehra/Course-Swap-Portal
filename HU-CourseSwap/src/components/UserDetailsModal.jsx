@@ -17,8 +17,6 @@ const UserDetailsModal = ({ isOpen, user, onClose }) => {
         <p>
           <strong>Phone:</strong> {user.phone || "N/A"}
         </p>{" "}
-        {/* Assuming you store the phone number */}
-        {/* <p><strong>Message:</strong> {user.message || 'N/A'}</p> You can also store a custom message */}
       </div>
     </div>
   );

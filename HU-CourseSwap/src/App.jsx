@@ -9,9 +9,7 @@ import SignUp from './pages/Signup';
 import EditProfilePage from './pages/EditProfilePage'
 import NotificationsPage from './pages/Notifications.jsx';
 import SwapUserProfilePage from './pages/SwapUserProfilePage';
-
-import './App.css';  // Assuming you have global styles
-// import './styles/dashboard.css'; // or wherever your CSS is
+import './App.css';
 
 const App = () => {
   return (

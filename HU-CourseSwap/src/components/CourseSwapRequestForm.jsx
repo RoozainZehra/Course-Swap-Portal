@@ -11,9 +11,6 @@ const CourseSwapRequestForm = ({ onSubmit }) => {
     e.preventDefault();
     const requestData = { offeredCourse, desiredCourse, reason, preferredTime };
     onSubmit(requestData);
-
-    // Query Firestore for matching swap requests
-    // await fetchMatchingRequests(offeredCourse, desiredCourse);
   };
 
 

@@ -1,4 +1,3 @@
-// export default UserRequests;
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, query, where, deleteDoc, doc, getDoc } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';

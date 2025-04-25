@@ -38,11 +38,7 @@ const NotificationsPage = () => {
   // Fetch notifications after user state is updated
   useEffect(() => {
     if (!currentUser) return;
-    // console.log("Current user:", currentUser.email);
-    // console.log("Current user ID:", currentUser.uid);
     const currentUserID = currentUser.email.substring(0, 7);
-    // console.log("Current user:", currentUser.email);
-    // console.log("Current user ID:", currentUserID);
 
     // get interested users from swapRequests
     const unsubscribe = onSnapshot(
@@ -54,9 +50,7 @@ const NotificationsPage = () => {
           const data = docSnapshot.data();
           const swapRequestId = docSnapshot.id;
           const isPoster = data.userID === currentUserID;
-          // console.log("Swap Request ID:", isPoster);
           if (isPoster) {
-            // console.log("Swap userID:", data.userID, "Current:", currentUserID);
             // Get all docs in the interestedUsers subcollection
             const interestedUsersRef = collection(
               db,
@@ -65,16 +59,12 @@ const NotificationsPage = () => {
               "interestedUsers"
             );
             const interestedUsersSnapshot = await getDocs(interestedUsersRef);
-            // console.log("Interested users snapshot:", interestedUsersSnapshot);
-            // console.log("Interested users size:", interestedUsersSnapshot.size);
 
             if (!interestedUsersSnapshot.empty) {
               for (const userDoc of interestedUsersSnapshot.docs) {
                 const userData = userDoc.data();
-                // console.log("Interested user doc:", userData);
 
                 const interestedUserID = userDoc.data().identifier;
-                // console.log("Interested user ID:", interestedUserID);
                 const usersQuery = query(
                   collection(db, "users"),
                   where("studentId", "==", interestedUserID)
@@ -206,31 +196,9 @@ const NotificationsPage = () => {
           } else {
             console.warn("No user profile found for:", matchUserID);
           }
-
-          // if (!querySnapshot.empty) {
-          //   const userDoc = querySnapshot.docs[0].data();
-          //   console.log("Matching user found:", userDoc);
-          //   const matchUserID = userDoc.userID;
-          //   console.log("Matching user ID:", matchUserID);
-
-          //   allMatches.push({
-          //     // id: request.id,
-          //     type: "match",
-          //     userID: userDoc.userID,
-          //     userName: userDoc.fullName,
-          //     userEmail: userDoc.email,
-          //     userPhone: userDoc.contactNumber,
-          //     userMessage: userDoc.message,
-          //     haveCourse: userDoc.haveCourse,
-          //     wantCourse: userDoc.wantCourse,
-          //   });
-          // } else {
-          //   console.warn("No user found for ID:", matchUserID);
-          // }
         }
 
         // Step 3: Update the notifications state with matches
-        // setNotifications((prevNotifications) => [...prevNotifications, ...allMatches]);
         setNotifications((prevNotifications) => {
           const updatedNotifications = [...prevNotifications, ...allMatches];
           console.log("Updated Notifications State:", updatedNotifications);

@@ -2,7 +2,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f3efff; /* Light purple background */
-  /* If you want the gradient effect from the image */
   background: linear-gradient(to bottom right, #f3efff, #e9dfff);
   min-height: 100vh;
 }
@@ -51,6 +50,3 @@ body {
 .read-the-docs {
   color: #888;
 }
-
-
-/* test */

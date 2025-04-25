@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/SignUp.css";
-import { auth } from "../../firebase/firebaseConfig";
 import { createUserWithEmailAndPasswordHandler } from "../../firebase/auth_signup_password";
 import { validatePasswordHandler } from "../../firebase/auth_validate_password";
-import logo from "../assets/logo.png";
-import { validatePassword } from "firebase/auth";
 import { db } from "../../firebase/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { useSnackbar } from "notistack";
@@ -111,7 +108,6 @@ const SignUp = () => {
           }
 
           console.log("Signup and Firestore user creation successful:", user);
-          // alert("Account created successfully!");
           enqueueSnackbar("Account created successfully!", {
             variant: "success",
           });
@@ -120,7 +116,6 @@ const SignUp = () => {
 
         .catch((error) => {
           console.error("Signup failed:", error.message);
-          // alert("Signup failed. Please try again.");
           enqueueSnackbar("Signup failed. Please try again.", {
             variant: "error",
           });
@@ -136,7 +131,6 @@ const SignUp = () => {
         <h1>Join Us!</h1>
         <p>Sign up to Habib University Course Swap portal</p>
         <div className="decorative-elements">
-          {/* Decorative elements like the wavy lines in the example */}
           <div className="circle-element top-left"></div>
           <div className="circle-element bottom-right"></div>
           <div className="wave-element"></div>

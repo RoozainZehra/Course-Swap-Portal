@@ -10,10 +10,8 @@ import SnackbarWrapper from './components/SnackbarWrapper.jsx';
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <App /> */}
     <SnackbarWrapper />
   </React.StrictMode>
 )
