@@ -47,6 +47,5 @@ graph TD;
     FeatureLogin -->|Merge| Develop;
     FeatureBackend -->|Merge| Develop;
     FeatureSwapRequests -->|Merge| Develop;
-    
-    Develop -->|Branch| feature/roozain-database-progress;
+
     Release -->|Merge| Main;
