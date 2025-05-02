@@ -18,8 +18,8 @@ A web-based portal that allows university students to request and manage course 
 
 ### Clone the Repository
 
--git clone https://github.com/your-username/Course-Swap-Portal.git
--cd Course-Swap-Portal
+-git clone https://github.com/RoozainZehra/Course-Swap-Portal.git
+-cd HUCourseSwap
 
 ---
 
@@ -29,7 +29,7 @@ A web-based portal that allows university students to request and manage course 
 
 ---
 
-###Setup Firebase
+### Setup Firebase
 
 1. Go to Firebase Console and create a project.
 2. In Project Settings, add a new web app.
@@ -37,7 +37,7 @@ A web-based portal that allows university students to request and manage course 
 
 ---
 
-###run the Project
+### Run the Project
 
 -npm start or npm run dev
 
