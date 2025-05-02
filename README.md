@@ -19,7 +19,7 @@ A web-based portal that allows university students to request and manage course 
 ### Clone the Repository
 
 -git clone https://github.com/RoozainZehra/Course-Swap-Portal.git
--cd HUCourseSwap
+-cd HU-CourseSwap
 
 ---
 
