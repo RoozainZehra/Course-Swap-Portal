@@ -1,4 +1,48 @@
 # Course-Swap-Portal
+
+## About the Project
+A web-based portal that allows university students to request and manage course swaps efficiently.
+
+---
+
+## Tech Stack
+
+- **Frontend**: React.js, Tailwind CSS
+- **Backend**: Firebase Firestore (NoSQL Database)
+- **Version Control**: Git + GitHub
+- **Others**: Axios, React Router, etc.
+
+---
+
+## Getting Started
+
+### Clone the Repository
+
+-git clone https://github.com/your-username/Course-Swap-Portal.git
+-cd Course-Swap-Portal
+
+---
+
+### Install Dependencies
+
+-npm install
+
+---
+
+###Setup Firebase
+
+1. Go to Firebase Console and create a project.
+2. In Project Settings, add a new web app.
+3. Copy the Firebase config and paste it into your project.
+
+---
+
+###run the Project
+
+-npm start or npm run dev
+
+---
+
 ##  Git Flow Strategy
 
 ### **Main Branches**
